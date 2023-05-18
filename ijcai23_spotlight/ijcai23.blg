@@ -1,0 +1,49 @@
+This is BibTeX, Version 0.99d (TeX Live 2022)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: ijcai23.aux
+The style file: named.bst
+Database file #1: pk.bib
+Warning--I didn't find a database entry for "Bonabeau99"
+Warning--I didn't find a database entry for "LomuscioPenczekQu10"
+You've used 24 entries,
+            2439 wiz_defined-function locations,
+            714 strings with 9432 characters,
+and the built_in function-call counts, 12368 in all, are:
+= -- 1350
+> -- 427
+< -- 21
++ -- 148
+- -- 142
+* -- 877
+:= -- 1778
+add.period$ -- 89
+call.type$ -- 24
+change.case$ -- 164
+chr.to.int$ -- 20
+cite$ -- 24
+duplicate$ -- 572
+empty$ -- 972
+format.name$ -- 178
+if$ -- 2781
+int.to.chr$ -- 5
+int.to.str$ -- 0
+missing$ -- 27
+newline$ -- 123
+num.names$ -- 72
+pop$ -- 188
+preamble$ -- 1
+purify$ -- 191
+quote$ -- 0
+skip$ -- 504
+stack$ -- 0
+substring$ -- 777
+swap$ -- 246
+text.length$ -- 21
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 180
+warning$ -- 0
+while$ -- 107
+width$ -- 28
+write$ -- 331
+(There were 2 warnings)

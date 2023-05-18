@@ -1,0 +1,449 @@
+%%%% ijcai24.tex
+
+\typeout{Towards Formal Verification of Neuro-symbolic Multi-agent Systems}
+
+% These are the instructions for authors for IJCAI-23.
+
+\documentclass{article}
+\pdfpagewidth=8.5in
+\pdfpageheight=11in
+
+% The file ijcai23.sty is a copy from ijcai22.sty
+% The file ijcai22.sty is NOT the same as previous years'
+\usepackage{ijcai23}
+
+\input{preamble}
+
+% Use the postscript times font!
+\usepackage{times}
+\usepackage{soul}
+\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[small]{caption}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{booktabs}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage[switch]{lineno}
+
+% Comment out this line in the camera-ready submission
+\linenumbers
+
+\urlstyle{same}
+
+% the following package is optional:
+%\usepackage{latexsym}
+
+% See https://www.overleaf.com/learn/latex/theorems_and_proofs
+% for a nice explanation of how to define new theorems, but keep
+% in mind that the amsthm package is already included in this
+% template and that you must *not* alter the styling.
+\newtheorem{example}{Example}
+\newtheorem{theorem}{Theorem}
+
+% Following comment is from ijcai97-submit.tex:
+% The preparation of these files was supported by Schlumberger Palo Alto
+% Research, AT\&T Bell Laboratories, and Morgan Kaufmann Publishers.
+% Shirley Jowell, of Morgan Kaufmann Publishers, and Peter F.
+% Patel-Schneider, of AT\&T Bell Laboratories collaborated on their
+% preparation.
+
+% These instructions can be modified and used in other conferences as long
+% as credit to the authors and supporting agencies is retained, this notice
+% is not changed, and further modification or reuse is not restricted.
+% Neither Shirley Jowell nor Peter F. Patel-Schneider can be listed as
+% contacts for providing assistance without their prior permission.
+
+% To use for other conferences, change references to files and the
+% conference appropriate and use other authors, contacts, publishers, and
+% organizations.
+% Also change the deadline and address for returning papers and the length and
+% page charge instructions.
+% Put where the files are available in the appropriate places.
+
+
+% PDF Info Is REQUIRED.
+% Please **do not** include Title and Author information
+\pdfinfo{
+/TemplateVersion (IJCAI.2023.0)
+}
+
+\title{Towards Formal Verification of Neuro-symbolic Multi-agent Systems}
+
+
+% Single author syntax
+\author{
+    Panagiotis Kouvaros
+    \affiliations
+    Department of Computing, Imperial College London
+    \emails
+    p.kouvaros@imperial.ac.uk
+}
+
+% Multiple author syntax (remove the single-author syntax above and the \iffalse ... \fi here)
+\iffalse
+\author{
+First Author$^1$
+\and
+Second Author$^2$\and
+Third Author$^{2,3}$\And
+Fourth Author$^4$
+\affiliations
+$^1$First Affiliation\\
+$^2$Second Affiliation\\
+$^3$Third Affiliation\\
+$^4$Fourth Affiliation
+\emails
+\{first, second\}@example.com,
+third@other.example.com,
+fourth@example.com
+}
+\fi
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+
+This paper outlines some of the key methods we developed towards the formal
+verification of multi-agent systems, covering both symbolic and connectionist
+systems.  It discusses logic-based methods for the verification of unbounded
+multi-agent systems (i.e., systems composed of an arbitrary number of
+homogeneous agents, e.g., robot swarms), optimisation approaches for
+establishing the robustness of neural network models, and methods for analysing
+properties of neuro-symbolic multi-agent systems.
+
+\end{abstract}
+
+\section{Introduction}
+
+Significant advances in Artificial Intelligence (AI) have enabled the
+automation of challenging tasks, such as computer vision, that have been
+traditionally difficult to tackle using classical approaches.  This accelerated
+the trend of incorporating AI components in diverse applications with high
+societal impact, such as healthcare and transportation. Still, even though
+there is an increasing consensus in AI being beneficial for society,  its
+inherent fragility hinders its adoption in safety-critical applications.  In
+response to these concerns the area of formal verification of AI has grown
+rapidly over the past few years to provide methods to automatically verify that
+AI systems robustly behave as intended.
+
+The formal verification problem is concerned with establishing whether a MAS
+$S$ satisfies a safety property $P$. {\em Model checking}, a key method for the
+formal verification of reactive systems, has also been used in the past fifteen
+years to provide automated solutions to this problem~\cite{Clarke+99a}. In
+model checking, the system is represented as a model $M_S$, the specification
+is encoded as formula $\varphi$ and it is then checked whether $M_S$ satisfies
+$\varphi$. In the case of MAS, the formula $\varphi$, does not simply express
+temporal properties of systems, as in reactive systems, but it also denotes
+high-level attitutes of agency, such as knowledge and strategies, as these are
+expressed in temporal-epistemic logic~\cite{Fagin+95b} and alternating-time
+logic~\cite{Alur+98a}.
+
+A number of methods were put forward in the area that enabled the computation of
+the model checking query for progressively bigger systems. These include binary
+decision diagrams [Gammie and Meyden, 2004; Lomuscio et al., 2009], abstraction
+[Co- hen et al., 2009], partial order reduction [Lomuscio et al., 2010] and
+bounded model checking [Lomuscio et al., 2007].
+
+Even though the methods have enabled to model checking of complex systems of
+very large state spaces, model checking limits the formal verification of MAS to
+(i) systems with a known number of participants at design time; (ii) systems
+with purely symbolic components. This is in contrast to the current trend of
+developing and deploying MAS with an unbounded number of participants, as in
+robot swarms, multi-party negotiation protocols and auctions, voting protocols
+and e-sevices. 
+
+Unbounded Multi-agent Systems (UMAS) are MAS composed of homogeneous agents,
+each instantiated by a unique {\em agent template}, whose number in not known at
+design time. 
+
+In contrast to traditional models of agency, where the agent’s behaviour is
+given in an agent-based programming language, these methods do not accounts for
+the recent shift to synthesise the agents’ behaviour from data.
+
+
+
+the methods cannot in principle completely overcome the {\em state-space
+explosion problem}, a key limitation of model checking whereby the state-space
+is exponential in the number of variables encoding the system to be checked. 
+
+State space explosion problem
+
+Purely symbolic agents. 
+
+In these cases, one could encode a system with a given number of agents and
+verify that a specification holds. However, additional agents may possibly
+interfere with the system in unpredictable ways resulting in the specifications
+being violated. Therefore, to fully verify the system, the process would have to
+be repeated for any possible number of components
+
+\section{Unbounded Multi-agent Systems}
+
+Interpreted systems is a main semantical structure for the formal description of
+multi-agent systems and the interpretation of agent-based specifications,
+including those expressed in temporal-epistemic logic and alternate time
+logic~\cite{Fagin+95b,LomuscioRaimondi06c}. Parameterised Interpreted Systems
+(PIS)  is an extension to interpreted systems  that we put forward  to reason
+about the temporal-epistemic properties of UMAS in both
+synchronous~\cite{KouvarosLomuscio15b} and
+asynchronous~\cite{KouvarosLomuscio16a} settings.   The parameter in PIS denotes
+the number of agents in the system, each homogeneously constructed from an agent
+template. 
+
+The verification problem for PIIS (generally known as the {\em parameterised
+verification problem} in the reactive systems' literature~\cite{Bloem+15} is to
+check whether any system, for any value of the parameter, satisfies a given
+specification.  This is in general undecidable~\cite{KouvarosLomuscio16a}.
+General solutions can thus be given only in the form of incomplete techniques.
+Alternatively, decidable fragments of the problem can be curved by imposing
+restrictions on the systems and/or the specifications.  
+
+A key notion that enables the construction of verification methods in both
+settings is that of a {\em cutoff}.  A cutoff is a natural number that expresses
+the number of components that is sufficient to analyse when evaluating a given 
+specification. In other words, if a cutoff can be computed, then the
+verification problem can be solved by checking all systems whose number of
+agents is below the cutoff value.  In addition to providing solutions to the
+verification problem, the identification of cutoffs can also be used to check
+whether the underlying system exhibits a certain {\em emergent behaviour} (i.e.,
+a behaviour that is realised  only when certain lower bounds on the number of
+agents are met) of interest.
+
+% As we've shown cutoffs have a formal conncection to the emergent behaviours,
+% i.e., behviours that are exchibited by the system only when certain lower bounds
+% on the number of agents are satisfied. Intuitrevely, since any propertied (not)
+% satisifed by the system with $c$ agents, where $c$ is a cutoff, is also (not)
+% satisfied by any bigger system, a property is an emergent behviour if and only
+% if it is satisfied by the cutoff system~\cite{KouvarosLomuscio15b}.
+
+Although in theory  cutoffs do not always exist~\cite{KouvarosLomuscio13b},
+strong empirical evidence supports their existence for real-world
+systems~\cite{EmersonKahlon00,EmersonNamjoshi95,Benjamin+14}.  For the cases
+where they do not exist, theoretical analyses show that these often concern
+impractical cyclic behaviours whose number of repetitions depends on the exact
+number of agents in the system~\cite{KouvarosLomuscio13b}.
+
+% verification queries for real-world systems an,
+% specifications often admin a cutoff.  Theoretical analyses also show that
+% systems that verification problems with no cutoffs concern peculiar behav do
+% have a cutoff are systems of behaviours expressing a precise, arbitrarily large,
+% number of agents in the system~\footnote{Roughly speaking, undecidability
+% follows because of the expressiveness of the framework to represent the number
+% of participants in the system, i.e., for any $n \in \mathbb{N}$, to construct a
+% specification that is {\em true} only when the system comprised $n$ agent. For
+% instance, if the execution of an action by an agent requires another agent to
+% deadlock, then the number of times the action can be performed depends on the
+% total number of agents in the system. This expressivity enables the simulation
+% of the halting problem of a  2-counter machine.}. Such properties are not the
+% typical properties to check, which are formed irrespective of the number of
+% agents in the system (e.g, every agent in a system of any agents can never enter
+% an unsafe configuration). 
+
+We have analysed various sufficient conditions for the identification of cutoffs
+with respect to different  synchronisation primitives endowing the agents.  In
+the fully synchronous setting, we have shown that cutoffs can always be
+identified and gave a procedure for their
+computation~\cite{KouvarosLomuscio15b}.
+In the asynchronous case, where agents communicate via broadcast actions, we
+have similarly given a sound and complete technique for their
+identification~\cite{KouvarosLomuscio13a}. For the instances where the agents
+can additionally participate in pairwise communication with their environment,
+we have shown that if 
+\begin{itemize}
+	\item[(i)] the environment can never block pairwise synchronisations
+for the system of one agent only, and
+	\item[(ii)] each synchronisation can happen in unique
+configurations for the environment,
+\end{itemize}
+then  cutoffs can be computed in an efficient procedure that runs in linear time
+in the size of the agent template~\cite{KouvarosLomuscio13b}. The second
+restriction can be lifted in a cutoff procedure that runs in exponential
+time~\cite{KouvarosLomuscio15}. 
+
+While the results were drawn with respect to {\em homogeneous} UMAS, where every
+agent is instantiated from a unique agent template, we have also provided
+extensions that account for {\em heterogeneous} UMAS, where agents can assume
+different roles and responsibilities, e.g., heterogeneous robot
+swarms~\cite{KouvarosLomuscio16a}. The heterogeneous semantics allow for
+broadcast actions that may either concern all agents of all agent templates or
+all agents following a certain template. Additionally, they enable pairwise
+interactions between agents of different roles, thereby surpassing the
+expressive power of the homogeneous model.
+
+Further gains in the expressivity of protocols that can be verified have been
+obtained by the verification method we introduced for UMAS programmed using
+variables with infinite domains~\cite{KouvarosLomuscio17a}. The method  combines
+predicate abstraction~\cite{LomuscioMichaliszyn15} with parameterised
+verification (the former addressing the unboundedness of the state-space of the
+agents and the latter tackling the unboundedness of their number).  Other
+extensions of PIS have been used to describe {\em open MAS}, where countably
+many agents can join and leave the system at runtime. We have given verification
+methods for open MAS for both synchronous and asynchronous
+semantics~\cite{Kouvaros+19}.
+
+We have released the open-source parameterised verification toolkit
+\textsc{MCMAS-P} implementing the aforementioned cutoff procedures.
+\textsc{MCMAS-P} enabled for the first time the verification of aggregation and
+foraging algorithms for robot swarms irrespective of the number of robots
+composing the swarm~\cite{KouvarosLomuscio15b,KouvarosLomuscio16a}.  Further
+applications included the analysis of the security of an unbounded number of
+concurrent sessions of cryptographic protocols, for which we provided a mapping
+from a Dolev-Yao threat model to PIS~\cite{BoureanuKouvarosLomuscio16}.  Others
+concerned  the verification of UMAS with {\em data-aware agents}, i.e., agents
+that are endowed with possibly infinite domains and that interact with an
+environment composed of (semi)-structured data~\cite{MontaliCalvaneseGiacomo14}.
+For this class of UMAS we similarly  gave a mapping to
+PIS~\cite{BelardinelliKouvarosLomuscio17}.  Finally,  adaptations of the
+counter-abstraction methods for PIS  enabled us to derive methods for the
+verification of opinion formation protocols in swarms, which we used to give
+formal guarantees on the outcome of consensus protocols. Other adaptations
+facilitated the verification of strategic properties of UMAS expressed in a
+parameterised variant  of Alternating-time temporal logic~\cite{Alur+98a} that
+we introduced~\cite{KouvarosLomuscio16c}.
+
+We conclude this section by noting that complementary to protocol correctness,
+which the aforementioned cutoffs methods can formally ascertain, the evaluation
+of protocols also requires   analyses of the extent to which they are are
+resilient to adverse functioning behaviours for some of the agents in the
+system.  For instance, when evaluating a robot swarm search-and-rescue scenario,
+it is not sufficient to establish that the swarm will collectively cover the
+search area, but it is also crucial to determine that local faults, e..g,
+hardware malfunctions, will be tolerated by the swarm, instead of being
+propagated through agent interactions thereby dis-coordinating the search. To
+address this concern we have put forward an automated procedure to establish the
+robustness of UMAS against a given ratio of faulty to non-faulty agents in the
+system~\cite{KouvarosLomuscio17b}, which we followed by a symbolic method to
+automatically synthesise the maximum ratio of faulty to non-faulty agents
+before the robustness of UMAS is violated~\cite{KouvarosLomuscioPirovano18}.  
+
+
+
+\section{Neuro-symbolic Multi-agent Systems}
+
+To account for the recent shift to synthesise agents from data, instead of
+agent-based programming languages, we have introduced a novel formalisation of
+MAS, which we  call {\em Neuro-symbolic MAS} (NMAS). In a nutshell, an agent in
+NMAS, comprises a perception mechanism implement via ReLU-based neural networks,
+coupled with a symbolic action mechanism.  
+
+The neural network components, which endow the agents with infinite domains,
+pose significant  challenges to the verification of NMAS.  In particular, in
+contrast to traditional verification for symbolic multiagent systems, where
+atomic formulae are evaluated in constant time at symbolic states of the system,
+the evaluation of atomic formulae in NMAS concerns the computation of the output
+regions of the neural networks  for a (potentially infinite) set of inputs.
+This atomic check is an NP-complete problem~\cite{Katz+17}. It has received
+considerable attention in the past five years in the context of standalone
+neural-network models as a principled way of analysing the inherent fragility of
+neural networks to adversarial attacks.  
+
+We first discuss our work on verifying standalone neural networks and then our
+studies on analysing NMAS.
+
+
+{\bf Neural network verification.} Definition. 
+Perhaps the most significant instantiation of the problem is adversarial rob.
+It is an NP-complete problem~\cite{Katz+17}. 
+While progress has been made, a key difficulty in the area is scalability. Simply put,
+the present methods, while effective on small models, can-
+not presently analyse the networks used in vision and other
+complex tasks. The approaches that have driven this effort are complete and incomplete.
+ormal verification of neural networks comprises complete
+and incomplete methods. Complete methods can in principle
+return a definite answer as to whether the verification prop-
+erty is satisfied, whereas incomplete methods may be un-
+able to decide whether the property is satisfied. Complete
+methods are based on MILP formulations [Botoeva et al.,
+2020; Bastani et al., 2016; Lomuscio and Maganti, 2017;
+Cheng et al., 2017; Fischetti and Jo, 2018; Tjeng et al.,
+2019], SMT encodings [Ehlers, 2017; Katz et al., 2017;
+Katz et al., 2019], and input refinement [Wang et al., 2018;
+P. Henriksen, 2020]. Incomplete methods are based on du-
+ality [Dvijotham et al., 2018; Wong and Kolter, 2018], lin-
+ear approximations [Tran et al., 2020; Singh et al., 2019;
+Weng et al., 2018; Tjandraatmadja et al., 2020] and semi-
+definite relaxations [Fazlyab et al., 2020; Dathathri et al.,
+2020]. While incomplete approaches differ, they all rely on
+approximations of the ReLU function. This often improves
+their scalability over complete methods but can also hinder
+their efficacy to solve the verification problem.
+
+Improving scalability in complete verification and precision in incomplete
+verification. Introduced the novel notion of a dependency between nodes which we
+used to refuced the configurations of the operations of the nodes in the network
+that need to be analyses when solving the everification problem. We did this for
+as cuts and as branching heuristic in branch-and-bound procedure.  rval
+propagation in which the choice of the ReLU relaxation at each node is
+determined via optimisation
+
+We have released the state-of-the-art, open-source toolkit {\textsc Venus}
+implementing these methods.  {\textsc Venus} has been used to analyse  Neural
+Network-Based Systems in the Aircraft Domain developed by Boeing.  an object
+detection system trained for open category detection and (ii.) a neural
+controller trained to assist landing in non-towered airports. Venus is used to
+identify the conditions under which these systems satisfy local robustness or
+generate counterexamples that comprehensively show the circumstances under which
+safety cannot be guaranteed
+
+{\bf NMAS verification.}
+Scalability - more evident when full systems are considered.
+The overall verification
+problem against CTL properties is undecidable~\cite{Akintunde+22}. Decidable
+fragments can be obtained by the consideration of bounded properties, i.e.,
+
+We develop and solve the
+resulting verification problem via a mixed-integer linear pro-
+gramming (MILP) formulation, present a tool developed for
+this task and evaluate the approach on an avionics advisory
+system for collision avoidance.
+
+formulae of bounded CTL build
+upon temporal modalities indexed with natural numbers denoting
+the temporal depth up to which the formula is evaluated
+
+MILP translations. Parallel executions 
+
+o further alleviate the difficulty of the verification problem, we
+also introduce a novel algorithm that checks for the occurrence of
+bugs in parallel over the execution paths. As we show, in the case
+of bounded safety specifications, this enables us to return a bug to
+the user as soon as a violation is identified on any of the branching
+paths that are explored in parallel.
+
+monolithic and compositional verification algorithms
+
+to coNE xp T imE upper bound for bounded CTL.
+
+As neural networks are functions
+over the reals, the states of the agents have infinite domains, as opposed to
+finite ones in standard MAS. 
+Starting from an initial state the
+sequence of joint actions of the agents in a NIS induces a computation tree where 
+the evaluation of what holds true at  each node of the tree, is not a simple
+check in constant time set inclusion, but it involves the non-trivial check of
+whether the output of neural networks satisfies some linear constraints for an
+infinite set of inputs.  --- Accounting for real-valued inputs. This is  an
+NP-complete problem. 
+
+
+
+
+
+\section{Conclusions}
+
+
+
+\section*{Acknowledgments}
+VAS group.
+
+%% The file named.bst is a bibliography style file for BibTeX 0.99c
+\bibliographystyle{named}
+\bibliography{pk}
+
+\end{document}
+

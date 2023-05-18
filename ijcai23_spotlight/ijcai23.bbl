@@ -1,0 +1,179 @@
+\begin{thebibliography}{}
+
+\bibitem[\protect\citeauthoryear{Akintunde \bgroup \em et al.\egroup
+  }{2022}]{Akintunde+22}
+M.~Akintunde, E.~Botoeva, P.~Kouvaros, and A.~Lomuscio.
+\newblock Formal verification of neural agents in non-deterministic
+  environments.
+\newblock {\em Journal of Autonomous Agents and Multi-Agent Systems}, 36(1),
+  2022.
+
+\bibitem[\protect\citeauthoryear{Alur \bgroup \em et al.\egroup
+  }{1998}]{Alur+98a}
+R.~Alur, T.~Henzinger, and O.~Kupferman.
+\newblock Alternating-time temporal logic.
+\newblock In {\em Proceedings of the International Symposium Compositionality:
+  The Significant Difference (COMPOS97)}, volume 1536 of {\em Lecture Notes in
+  Computer Science}, pages 23--60. Springer, 1998.
+
+\bibitem[\protect\citeauthoryear{Aminof \bgroup \em et al.\egroup
+  }{2014}]{Benjamin+14}
+B.~Aminof, T.~Kotek, S.~Rubin, F.~Spegni, and H.~Veith.
+\newblock Parameterized model checking of rendezvous systems.
+\newblock In {\em CONCUR 2014--Concurrency Theory}, pages 109--124. Springer,
+  2014.
+
+\bibitem[\protect\citeauthoryear{Belardinelli \bgroup \em et al.\egroup
+  }{2017}]{BelardinelliKouvarosLomuscio17}
+F.~Belardinelli, P.~Kouvaros, and A.~Lomuscio.
+\newblock Parameterised verification of data-aware multi-agent systems.
+\newblock In {\em Proceedings of the 24th International Joint Conference on
+  Artificial Intelligence (IJCAI17)}, pages 98--104. AAAI Press, 2017.
+
+\bibitem[\protect\citeauthoryear{Bloem \bgroup \em et al.\egroup
+  }{2015}]{Bloem+15}
+R.~Bloem, S.~Jacobs, A.~Khalimov, I.~Konnov, S.~Rubin, H.~Veith, and J.~Widder.
+\newblock {\em Decidability of Parameterized Verification}.
+\newblock Morgan and Claypool Publishers, 2015.
+
+\bibitem[\protect\citeauthoryear{Boureanu \bgroup \em et al.\egroup
+  }{2016}]{BoureanuKouvarosLomuscio16}
+I.~Boureanu, P.~Kouvaros, and A.~Lomuscio.
+\newblock Verifying security properties in unbounded multi-agent systems.
+\newblock In {\em Proceedings of the 15th International Conference on
+  Autonomous Agents and Multi-Agent Systems (AAMAS16)}, pages 1209--1218.
+  IFAAMAS Press, 2016.
+
+\bibitem[\protect\citeauthoryear{Clarke \bgroup \em et al.\egroup
+  }{1999}]{Clarke+99a}
+E.M. Clarke, O.~Grumberg, and D.A. Peled.
+\newblock {\em Model Checking}.
+\newblock The MIT Press, 1999.
+
+\bibitem[\protect\citeauthoryear{Emerson and Kahlon}{2000}]{EmersonKahlon00}
+E.~Emerson and V.~Kahlon.
+\newblock Reducing model checking of the many to the few.
+\newblock In {\em Proceedings of the 17th International Conference on Automated
+  Deduction (CADE00)}, volume 1831 of {\em Lecture Notes in Computer Science},
+  pages 236--254. Springer, 2000.
+
+\bibitem[\protect\citeauthoryear{Emerson and
+  Namjoshi}{1995}]{EmersonNamjoshi95}
+E.~Emerson and K.~Namjoshi.
+\newblock Reasoning about rings.
+\newblock In {\em Proceedings of the 22nd Annual Sigact-Aigplan on Principles
+  of Programming Languages (POPL95)}, pages 85--94. Pearson Education, 1995.
+
+\bibitem[\protect\citeauthoryear{Fagin \bgroup \em et al.\egroup
+  }{1995}]{Fagin+95b}
+R.~Fagin, J.~Y. Halpern, Y.~Moses, and M.~Y. Vardi.
+\newblock {\em Reasoning about Knowledge}.
+\newblock MIT Press, Cambridge, 1995.
+
+\bibitem[\protect\citeauthoryear{Katz \bgroup \em et al.\egroup
+  }{2017}]{Katz+17}
+G.~Katz, C.~W. Barrett, D.~L. Dill, K.~Julian, and M.~J. Kochenderfer.
+\newblock Reluplex: An efficient {SMT} solver for verifying deep neural
+  networks.
+\newblock In {\em CAV17}, pages 97--117, 2017.
+
+\bibitem[\protect\citeauthoryear{Kouvaros and
+  Lomuscio}{2013a}]{KouvarosLomuscio13a}
+P.~Kouvaros and A.~Lomuscio.
+\newblock Automatic verification of parametrised interleaved multi-agent
+  systems.
+\newblock In {\em Proceedings of the 12th International Conference on
+  Autonomous Agents and Multi-Agent systems (AAMAS13)}, pages 861--868. IFAAMAS
+  Press, 2013.
+
+\bibitem[\protect\citeauthoryear{Kouvaros and
+  Lomuscio}{2013b}]{KouvarosLomuscio13b}
+P.~Kouvaros and A.~Lomuscio.
+\newblock A cutoff technique for the verification of parameterised interpreted
+  systems with parameterised environments.
+\newblock In {\em Proceedings of the 23rd International Joint Conference on
+  Artificial Intelligence (IJCAI13)}, pages 2013--2019. AAAI Press, 2013.
+
+\bibitem[\protect\citeauthoryear{Kouvaros and
+  Lomuscio}{2015a}]{KouvarosLomuscio15}
+P.~Kouvaros and A.~Lomuscio.
+\newblock A counter abstraction technique for the verification of robot swarms.
+\newblock In {\em Proceedings of the 29th AAAI Conference on Artificial
+  Intelligence (AAAI15)}, pages 2081--2088. AAAI Press, 2015.
+
+\bibitem[\protect\citeauthoryear{Kouvaros and
+  Lomuscio}{2015b}]{KouvarosLomuscio15b}
+P.~Kouvaros and A.~Lomuscio.
+\newblock Verifying emergent properties of swarms.
+\newblock In {\em Proceedings of the 24th International Joint Conference on
+  Artificial Intelligence (IJCAI15)}, pages 1083--1089. AAAI Press, 2015.
+
+\bibitem[\protect\citeauthoryear{Kouvaros and
+  Lomuscio}{2016a}]{KouvarosLomuscio16c}
+P.~Kouvaros and A.~Lomuscio.
+\newblock Parameterised model checking for alternating-time temporal logic.
+\newblock In {\em Proceedings of the 22nd European Conference on Artificial
+  Intelligence (ECAI16)}, pages 1230--1238. IOS Press, 2016.
+
+\bibitem[\protect\citeauthoryear{Kouvaros and
+  Lomuscio}{2016b}]{KouvarosLomuscio16a}
+P.~Kouvaros and A.~Lomuscio.
+\newblock Parameterised verification for multi-agent systems.
+\newblock {\em Artificial Intelligence}, 234:152--189, 2016.
+
+\bibitem[\protect\citeauthoryear{Kouvaros and
+  Lomuscio}{2017a}]{KouvarosLomuscio17a}
+P.~Kouvaros and A.~Lomuscio.
+\newblock Parameterised verification of infinite state multi-agent systems via
+  predicate abstraction.
+\newblock In {\em Proceedings of the 24th International Joint Conference on
+  Artificial Intelligence (IJCAI17)}, pages 3013--3020. {AAAI} Press, 2017.
+
+\bibitem[\protect\citeauthoryear{Kouvaros and
+  Lomuscio}{2017b}]{KouvarosLomuscio17b}
+P.~Kouvaros and A.~Lomuscio.
+\newblock Verifying fault-tolerance in parameterised multi-agent systems.
+\newblock In {\em Proceedings of the 24th International Joint Conference on
+  Artificial Intelligence (IJCAI17)}, pages 288--294. AAAI Press, 2017.
+
+\bibitem[\protect\citeauthoryear{Kouvaros \bgroup \em et al.\egroup
+  }{2018}]{KouvarosLomuscioPirovano18}
+P.~Kouvaros, A.~Lomuscio, and E.~Pirovano.
+\newblock Symbolic synthesis of fault-tolerance ratios in parameterised
+  multi-agent systems.
+\newblock In {\em Proceedings of the 27th International Joint Conference on
+  Artificial Intelligence and 23rd European Conference on Artificial
+  Intelligence (IJCAI-ECAI18)}, pages 324--330. {AAAI} Press, 2018.
+
+\bibitem[\protect\citeauthoryear{Kouvaros \bgroup \em et al.\egroup
+  }{2019}]{Kouvaros+19}
+P.~Kouvaros, A.~Lomuscio, E.~Pirovano, and H.~Punchihewa.
+\newblock Formal verification of open multi-agent systems.
+\newblock In {\em Proceedings of the 18th International Conference on
+  Autonomous Agents and MultiAgent Systems (AAMAS19)}, pages 179--187. IFAAMAS
+  Press, 2019.
+
+\bibitem[\protect\citeauthoryear{Lomuscio and
+  Michaliszyn}{2015}]{LomuscioMichaliszyn15}
+A.~Lomuscio and J.~Michaliszyn.
+\newblock Verifying multi-agent systems by model checking three-valued
+  abstractions.
+\newblock In {\em Proceedings of the 14th International Conference on
+  Autonomous Agents and Multiagent Systems (AAMAS15)}, pages 189--198, 2015.
+
+\bibitem[\protect\citeauthoryear{Lomuscio and
+  Raimondi}{2006}]{LomuscioRaimondi06c}
+A.~Lomuscio and F.~Raimondi.
+\newblock Model checking knowledge, strategies, and games in multi-agent
+  systems.
+\newblock In {\em Proceedings of the 5th International Joint Conference on
+  Autonomous agents and Multi-Agent Systems ({AAMAS}06)}, pages 161--168. ACM
+  Press, 2006.
+
+\bibitem[\protect\citeauthoryear{Montali \bgroup \em et al.\egroup
+  }{2014}]{MontaliCalvaneseGiacomo14}
+M.~Montali, D.~Calvanese, and G.~{De Giacomo}.
+\newblock Verification of data-aware commitment-based multiagent system.
+\newblock In {\em Proceedings of AAMAS14}, pages 157--164. IFAAMAS, 2014.
+
+\end{thebibliography}

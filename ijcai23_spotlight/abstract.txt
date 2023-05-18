@@ -1,0 +1,25 @@
+Title:
+
+Towards Formal Verification of Neuro-symbolic Multi-agent Systems
+
+Abstract: 
+
+Significant advances in Artificial Intelligence (AI) have enabled the
+automation of challenging tasks, such as computer vision, that have been
+traditionally difficult to tackle using classical approaches.  This accelerated
+the trend of incorporating AI components in diverse applications with high
+societal impact, such as healthcare and transportation. Still, even though
+there is an increasing consensus in AI being beneficial for society,  its
+inherent fragility hinders its adoption in safety-critical applications.  In
+response to these concerns the area of formal verification of AI has grown
+rapidly over the past few years to provide methods to automatically verify that
+AI systems robustly behave as intended.
+
+This talk will introduce some of the key methods we developed in this area,
+covering both symbolic and connectionist systems.  It will discuss logic-based
+methods for the verification of unbounded multi-agent systems (i.e., systems
+composed of an arbitrary number of homogeneous agents, e.g., robot swarms),
+optimisation approaches for establishing the robustness of neural network
+models, and methods for analysing properties of neuro-symbolic multi-agent
+systems.
+
