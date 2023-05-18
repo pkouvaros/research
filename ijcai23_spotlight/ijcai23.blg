@@ -3,11 +3,9 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: ijcai23.aux
 The style file: named.bst
 Database file #1: pk.bib
-Warning--I didn't find a database entry for "Bonabeau99"
-Warning--I didn't find a database entry for "LomuscioPenczekQu10"
 You've used 24 entries,
             2439 wiz_defined-function locations,
-            714 strings with 9432 characters,
+            710 strings with 9374 characters,
 and the built_in function-call counts, 12368 in all, are:
 = -- 1350
 > -- 427
@@ -46,4 +44,3 @@ warning$ -- 0
 while$ -- 107
 width$ -- 28
 write$ -- 331
-(There were 2 warnings)
