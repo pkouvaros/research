@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.4.28)  18 MAY 2023 23:00
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.4.28)  21 MAY 2023 14:41
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -344,6 +344,8 @@ Package: algorithmic 2009/08/24 v0.1 Document Style `algorithmic'
 \c@ALC@depth=\count297
 \ALC@tlm=\skip63
 \algorithmicindent=\skip64
+) (/usr/share/texlive/texmf-dist/tex/latex/tools/xspace.sty
+Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
 ) (/usr/share/texlive/texmf-dist/tex/latex/lineno/lineno.sty
 Package: lineno 2022/07/30 line numbers on paragraphs v5.0
 \linenopenalty=\count298
@@ -369,7 +371,7 @@ LaTeX Info: Redefining \\ on input line 3114.
 )
 \c@example=\count307
 \c@theorem=\count308
-LaTeX Font Info:    Trying to load font information for T1+ptm on input line 106.
+LaTeX Font Info:    Trying to load font information for T1+ptm on input line 114.
  (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 ) (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
@@ -379,25 +381,25 @@ File: l3backend-pdftex.def 2022-10-26 L3 backend support: PDF output (pdfTeX)
 ) (./ijcai23.aux)
 \openout1 = `ijcai23.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 106.
-LaTeX Font Info:    ... okay on input line 106.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 106.
-LaTeX Font Info:    ... okay on input line 106.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 106.
-LaTeX Font Info:    ... okay on input line 106.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 106.
-LaTeX Font Info:    ... okay on input line 106.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 106.
-LaTeX Font Info:    ... okay on input line 106.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 106.
-LaTeX Font Info:    ... okay on input line 106.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 106.
-LaTeX Font Info:    ... okay on input line 106.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 106.
-LaTeX Font Info:    ... okay on input line 106.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 106.
-LaTeX Font Info:    ... okay on input line 106.
-Package hyperref Info: Link coloring OFF on input line 106.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 114.
+LaTeX Font Info:    ... okay on input line 114.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 114.
+LaTeX Font Info:    ... okay on input line 114.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 114.
+LaTeX Font Info:    ... okay on input line 114.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 114.
+LaTeX Font Info:    ... okay on input line 114.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 114.
+LaTeX Font Info:    ... okay on input line 114.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 114.
+LaTeX Font Info:    ... okay on input line 114.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 114.
+LaTeX Font Info:    ... okay on input line 114.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 114.
+LaTeX Font Info:    ... okay on input line 114.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 114.
+LaTeX Font Info:    ... okay on input line 114.
+Package hyperref Info: Link coloring OFF on input line 114.
  (./ijcai23.out) (./ijcai23.out)
 \@outlinefile=\write3
 \openout3 = `ijcai23.out'.
@@ -426,15 +428,15 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
 \titlearea=\box59
 \actualheight=\skip65
-LaTeX Font Info:    Trying to load font information for T1+phv on input line 119.
+LaTeX Font Info:    Trying to load font information for T1+phv on input line 127.
  (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd
 File: t1phv.fd 2020/03/25 scalable font definitions for T1/phv.
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 136.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 152.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 136.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 152.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1{/usr/share/texlive/texmf-var/fonts/map/pdftex/updmap/pdftex.map
@@ -687,91 +689,108 @@ pdfTeX warning: pdflatex (file /usr/share/texlive/texmf-var/fonts/map/pdftex/upd
 
 
 
-]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [2] (./ijcai23.bbl [3]
-Underfull \hbox (badness 4291) in paragraph at lines 21--25
+] [2] [3] (./ijcai23.bbl
+Underfull \hbox (badness 4291) in paragraph at lines 38--42
 []\T1/ptm/m/n/10 B. Aminof, T. Kotek, S. Ru-bin,
  []
 
 
-Underfull \hbox (badness 1142) in paragraph at lines 35--38
+Underfull \hbox (badness 1142) in paragraph at lines 52--55
 []\T1/ptm/m/n/10 R. Bloem, S. Ja-cobs, A. Khal-imov,
  []
 
 
-Underfull \hbox (badness 1226) in paragraph at lines 54--59
+Underfull \hbox (badness 2197) in paragraph at lines 72--77
+\T1/ptm/m/n/10 Stan-ley Bak, Tay-lor T John-son, and Changliu Liu.
+ []
+
+
+Underfull \hbox (badness 1226) in paragraph at lines 90--95
 []\T1/ptm/m/n/10 E. Emer-son and V. Kahlon.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 62--66
+Underfull \hbox (badness 10000) in paragraph at lines 98--102
 []\T1/ptm/m/n/10 E. Emer-son and
  []
 
 
-Underfull \hbox (badness 1281) in paragraph at lines 62--66
+Underfull \hbox (badness 1281) in paragraph at lines 98--102
 \T1/ptm/m/it/10 of Pro-gram-ming Lan-guages (POPL95)\T1/ptm/m/n/10 , pages 85--94.
  []
 
 
-Underfull \hbox (badness 1142) in paragraph at lines 99--103
+Underfull \hbox (badness 10000) in paragraph at lines 117--122
+[]\T1/ptm/m/n/10 P. Gam-mie and
+ []
+
+
+Underfull \hbox (badness 1286) in paragraph at lines 117--122
+\T1/ptm/m/it/10 Con-fer-ence on Com-puter Aided Ver-i-fi-ca-tion (CAV04)\T1/ptm/m/n/10 ,
+ []
+
+[4]
+Underfull \hbox (badness 1142) in paragraph at lines 158--162
 \T1/ptm/m/it/10 Con-fer-ence on Ar-ti-fi-cial In-tel-li-gence (AAAI15)\T1/ptm/m/n/10 , pages
  []
 
 
-Underfull \hbox (badness 1515) in paragraph at lines 134--138
+Underfull \hbox (badness 1515) in paragraph at lines 201--205
 \T1/ptm/m/it/10 Joint Con-fer-ence on Ar-ti-fi-cial In-tel-li-gence (IJ-CAI17)\T1/ptm/m/n/10 ,
  []
 
 
-Underfull \hbox (badness 3492) in paragraph at lines 141--147
+Underfull \hbox (badness 3492) in paragraph at lines 216--222
 []\T1/ptm/m/n/10 P. Kou-varos, A. Lo-mus-cio, and
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 150--155
+Underfull \hbox (badness 10000) in paragraph at lines 225--230
 []\T1/ptm/m/n/10 P. Kou-varos, A. Lo-mus-cio,
  []
 
 
-Underfull \hbox (badness 1642) in paragraph at lines 150--155
+Underfull \hbox (badness 1642) in paragraph at lines 225--230
 \T1/ptm/m/n/10 E. Pirovano, and H. Punchi-hewa.  For-mal ver-i-fi-ca-
  []
 
 
-Underfull \hbox (badness 1072) in paragraph at lines 150--155
+Underfull \hbox (badness 1072) in paragraph at lines 225--230
 \T1/ptm/m/it/10 18th In-ter-na-tional Con-fer-ence on Au-tonomous Agents
  []
 
 
-Underfull \hbox (badness 1024) in paragraph at lines 150--155
+Underfull \hbox (badness 1024) in paragraph at lines 225--230
 \T1/ptm/m/it/10 and Mul-ti-A-gent Sys-tems (AA-MAS19)\T1/ptm/m/n/10 , pages 179--187.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 158--163
+Underfull \hbox (badness 2096) in paragraph at lines 233--240
+[]\T1/ptm/m/n/10 P. Kou-varos, T. Ky-ono, F. Le-o-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 251--256
 []\T1/ptm/m/n/10 A. Lo-mus-cio and
  []
 
-) [4] (./ijcai23.aux)
+) [5] (./ijcai23.aux)
 Package rerunfilecheck Info: File `ijcai23.out' has not changed.
-(rerunfilecheck)             Checksum: C5BE6486B6776B1C3A4A95FBDA437C82;614.
+(rerunfilecheck)             Checksum: 249A164F8E226E5A99DB63E6A038EA31;1046.
  ) 
 Here is how much of TeX's memory you used:
- 12928 strings out of 476182
- 205668 string characters out of 5796604
+ 13037 strings out of 476182
+ 207501 string characters out of 5796604
  1885793 words of memory out of 6000000
- 33017 multiletter control sequences out of 15000+600000
- 543157 words of font info for 60 fonts, out of 8000000 for 9000
+ 33094 multiletter control sequences out of 15000+600000
+ 554425 words of font info for 78 fonts, out of 8000000 for 9000
  1137 hyphenation exceptions out of 8191
- 72i,5n,77p,302b,567s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 72i,8n,77p,302b,568s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/mlmodern/mlmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/mlmodern/mlmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on ijcai23.pdf (4 pages, 96688 bytes).
+Output written on ijcai23.pdf (5 pages, 105894 bytes).
 PDF statistics:
- 175 PDF objects out of 1000 (max. 8388607)
- 155 compressed objects within 2 object streams
- 35 named destinations out of 1000 (max. 500000)
- 33 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 229 PDF objects out of 1000 (max. 8388607)
+ 207 compressed objects within 3 object streams
+ 55 named destinations out of 1000 (max. 500000)
+ 49 words of extra memory for PDF output out of 10000 (max. 10000000)
 

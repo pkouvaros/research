@@ -1,6 +1,23 @@
 \begin{thebibliography}{}
 
 \bibitem[\protect\citeauthoryear{Akintunde \bgroup \em et al.\egroup
+  }{2020a}]{Akintunde+20}
+M.~Akintunde, E.~Botoeva, P.~Kouvaros, and A.~Lomuscio.
+\newblock Formal verification of neural agents in non-deterministic
+  environments.
+\newblock In {\em Proceedings of the 19th International Conference on
+  Autonomous Agents and MultiAgent Systems (AAMAS20)}, page To Appear. ACM,
+  2020.
+
+\bibitem[\protect\citeauthoryear{Akintunde \bgroup \em et al.\egroup
+  }{2020b}]{Akintunde+20b}
+M.~Akintunde, E.~Botoeva, P.~Kouvaros, and A.~Lomuscio.
+\newblock Verifying strategic abilities of neural-symbolic multi-agent systems.
+\newblock In {\em Proceedings of the International Conference on Principles of
+  Knowledge Representation and Reasoning (KR20)}, pages 22--32. {AAAI} Press,
+  2020.
+
+\bibitem[\protect\citeauthoryear{Akintunde \bgroup \em et al.\egroup
   }{2022}]{Akintunde+22}
 M.~Akintunde, E.~Botoeva, P.~Kouvaros, and A.~Lomuscio.
 \newblock Formal verification of neural agents in non-deterministic
@@ -36,6 +53,12 @@ R.~Bloem, S.~Jacobs, A.~Khalimov, I.~Konnov, S.~Rubin, H.~Veith, and J.~Widder.
 \newblock {\em Decidability of Parameterized Verification}.
 \newblock Morgan and Claypool Publishers, 2015.
 
+\bibitem[\protect\citeauthoryear{Botoeva \bgroup \em et al.\egroup
+  }{2020}]{Botoeva+20}
+E.~Botoeva, P.~Kouvaros, J.~Kronqvist, A.~Lomuscio, and R.~Misener.
+\newblock Efficient verification of neural networks via dependency analysis.
+\newblock In {\em AAAI20}, 2020.
+
 \bibitem[\protect\citeauthoryear{Boureanu \bgroup \em et al.\egroup
   }{2016}]{BoureanuKouvarosLomuscio16}
 I.~Boureanu, P.~Kouvaros, and A.~Lomuscio.
@@ -44,11 +67,24 @@ I.~Boureanu, P.~Kouvaros, and A.~Lomuscio.
   Autonomous Agents and Multi-Agent Systems (AAMAS16)}, pages 1209--1218.
   IFAAMAS Press, 2016.
 
+\bibitem[\protect\citeauthoryear{Brix \bgroup \em et al.\egroup
+  }{2023}]{Brix+23}
+Christopher Brix, Mark~Niklas M{\"u}ller, Stanley Bak, Taylor~T Johnson, and
+  Changliu Liu.
+\newblock First three years of the international verification of neural
+  networks competition (vnn-comp).
+\newblock {\em arXiv preprint arXiv:2301.05815}, 2023.
+
 \bibitem[\protect\citeauthoryear{Clarke \bgroup \em et al.\egroup
   }{1999}]{Clarke+99a}
 E.M. Clarke, O.~Grumberg, and D.A. Peled.
 \newblock {\em Model Checking}.
 \newblock The MIT Press, 1999.
+
+\bibitem[\protect\citeauthoryear{Doshi-Velez and Kim}{2017}]{VelizKim17}
+F.~Doshi-Velez and B.~Kim.
+\newblock Towards a rigorous science of interpretable machine learning.
+\newblock {\em arXiv preprint arXiv: 1702.08608}, 2017.
 
 \bibitem[\protect\citeauthoryear{Emerson and Kahlon}{2000}]{EmersonKahlon00}
 E.~Emerson and V.~Kahlon.
@@ -65,10 +101,33 @@ E.~Emerson and K.~Namjoshi.
   of Programming Languages (POPL95)}, pages 85--94. Pearson Education, 1995.
 
 \bibitem[\protect\citeauthoryear{Fagin \bgroup \em et al.\egroup
-  }{1995}]{Fagin+95b}
+  }{1995a}]{Fagin+95b}
 R.~Fagin, J.~Y. Halpern, Y.~Moses, and M.~Y. Vardi.
 \newblock {\em Reasoning about Knowledge}.
 \newblock MIT Press, Cambridge, 1995.
+
+\bibitem[\protect\citeauthoryear{Fagin \bgroup \em et al.\egroup
+  }{1995b}]{Fagin+95a}
+R.~Fagin, J.~Y. Halpern, and M.~Vardi.
+\newblock A nonstandard approach to the logical omniscience problem.
+\newblock {\em Artificial Intelligence}, 79, 1995.
+
+\bibitem[\protect\citeauthoryear{Gammie and van~der
+  Meyden}{2004}]{GammieMeyden04a}
+P.~Gammie and R.~van~der Meyden.
+\newblock {MCK}: Model checking the logic of knowledge.
+\newblock In {\em Proceedings of 16th International Conference on Computer
+  Aided Verification (CAV04)}, volume 3114 of {\em Lecture Notes in Computer
+  Science}, pages 479--483. Springer, 2004.
+
+\bibitem[\protect\citeauthoryear{Hashemi \bgroup \em et al.\egroup
+  }{2021}]{HashemiKouvarosLomuscio21}
+V.~Hashemi, P.~Kouvaros, and A.~Lomuscio.
+\newblock Osip: Tightened bound propagation for the verification of relu neural
+  networks.
+\newblock In {\em Proceedings of the 19th International Conference on Software
+  Engineering and Formal Methods (SEFM21)}, pages 463--480. IEEE Computer
+  Society, 2021.
 
 \bibitem[\protect\citeauthoryear{Katz \bgroup \em et al.\egroup
   }{2017}]{Katz+17}
@@ -109,14 +168,22 @@ P.~Kouvaros and A.~Lomuscio.
   Artificial Intelligence (IJCAI15)}, pages 1083--1089. AAAI Press, 2015.
 
 \bibitem[\protect\citeauthoryear{Kouvaros and
-  Lomuscio}{2016a}]{KouvarosLomuscio16c}
+  Lomuscio}{2016a}]{KouvarosLomuscio16b}
+P.~Kouvaros and A.~Lomuscio.
+\newblock Formal verification of opinion formation in swarms.
+\newblock In {\em Proceedings of the 15th International Conference on
+  Autonomous Agents and Multi-Agent systems (AAMAS16)}, pages 1200--1209.
+  IFAAMAS Press, 2016.
+
+\bibitem[\protect\citeauthoryear{Kouvaros and
+  Lomuscio}{2016b}]{KouvarosLomuscio16c}
 P.~Kouvaros and A.~Lomuscio.
 \newblock Parameterised model checking for alternating-time temporal logic.
 \newblock In {\em Proceedings of the 22nd European Conference on Artificial
   Intelligence (ECAI16)}, pages 1230--1238. IOS Press, 2016.
 
 \bibitem[\protect\citeauthoryear{Kouvaros and
-  Lomuscio}{2016b}]{KouvarosLomuscio16a}
+  Lomuscio}{2016c}]{KouvarosLomuscio16a}
 P.~Kouvaros and A.~Lomuscio.
 \newblock Parameterised verification for multi-agent systems.
 \newblock {\em Artificial Intelligence}, 234:152--189, 2016.
@@ -136,6 +203,14 @@ P.~Kouvaros and A.~Lomuscio.
 \newblock In {\em Proceedings of the 24th International Joint Conference on
   Artificial Intelligence (IJCAI17)}, pages 288--294. AAAI Press, 2017.
 
+\bibitem[\protect\citeauthoryear{Kouvaros and
+  Lomuscio}{2021}]{KouvarosLomuscio21}
+P.~Kouvaros and A.~Lomuscio.
+\newblock Towards scalable complete verification of relu neural networks via
+  dependency-based branching.
+\newblock In {\em Proceedings of the 30th International Joint Conference on
+  Artificial Intelligence ({IJCAI}21)}, pages 2643--2650. ijcai.org, 2021.
+
 \bibitem[\protect\citeauthoryear{Kouvaros \bgroup \em et al.\egroup
   }{2018}]{KouvarosLomuscioPirovano18}
 P.~Kouvaros, A.~Lomuscio, and E.~Pirovano.
@@ -152,6 +227,24 @@ P.~Kouvaros, A.~Lomuscio, E.~Pirovano, and H.~Punchihewa.
 \newblock In {\em Proceedings of the 18th International Conference on
   Autonomous Agents and MultiAgent Systems (AAMAS19)}, pages 179--187. IFAAMAS
   Press, 2019.
+
+\bibitem[\protect\citeauthoryear{Kouvaros \bgroup \em et al.\egroup
+  }{2021}]{Kouvaros+21}
+P.~Kouvaros, T.~Kyono, F.~Leofante, A.~Lomuscio, D.~Margineantu, D.~Osipychev,
+  and Y.~Zheng.
+\newblock Formal analysis of neural network-based systems in the aircraft
+  domain.
+\newblock In {\em Proceedings of the 24th International Symposium on Formal
+  Methods ({FM21})}, volume 13047 of {\em Lecture Notes in Computer Science},
+  pages 730--740. Springer, 2021.
+
+\bibitem[\protect\citeauthoryear{Kouvaros \bgroup \em et al.\egroup
+  }{2023}]{Kouvaros+23}
+P.~Kouvaros, F.~Leofante, C.~Chung, B.~Edwards, D.~Margineantu, and
+  A.~Lomuscio.
+\newblock Verification of semantic key point detection for aircraft pose
+  estimation.
+\newblock In {\em To Appear.}, 2023.
 
 \bibitem[\protect\citeauthoryear{Lomuscio and
   Michaliszyn}{2015}]{LomuscioMichaliszyn15}
@@ -175,5 +268,33 @@ A.~Lomuscio and F.~Raimondi.
 M.~Montali, D.~Calvanese, and G.~{De Giacomo}.
 \newblock Verification of data-aware commitment-based multiagent system.
 \newblock In {\em Proceedings of AAMAS14}, pages 157--164. IFAAMAS, 2014.
+
+\bibitem[\protect\citeauthoryear{Penczek and
+  Lomuscio}{2003}]{PenczekLomuscio03b}
+W.~Penczek and A.~Lomuscio.
+\newblock Verifying epistemic properties of multi-agent systems via bounded
+  model checking.
+\newblock {\em Fundamenta Informaticae}, 55(2):167--185, 2003.
+
+\bibitem[\protect\citeauthoryear{Singh \bgroup \em et al.\egroup
+  }{2019}]{Singh+19}
+G.~Singh, T.~Gehr, M.~P{\"u}schel, and P.~Vechev.
+\newblock An abstract domain for certifying neural networks.
+\newblock {\em POPL19}, 3(POPL):1--30, 2019.
+
+\bibitem[\protect\citeauthoryear{Szegedy \bgroup \em et al.\egroup
+  }{2014}]{Szegedy+14}
+C.~Szegedy, W.~Zaremba, I.~Sutskever, J.~Bruna, D.~Erhan, I.~Goodfellow, and
+  R.~Fergus.
+\newblock Intriguing properties of neural networks.
+\newblock In {\em ICLR14}, 2014.
+
+\bibitem[\protect\citeauthoryear{Wang \bgroup \em et al.\egroup
+  }{2021}]{Wang+21}
+S.~Wang, H.~Zhang, K.~Xu, X.~Lin, S.~Jana, C.~Hsieh, and Z.Kolter.
+\newblock Beta-crown: Efficient bound propagation with per-neuron split
+  constraints for neural network robustness verification.
+\newblock In {\em Advances in Neural Information Processing Systems}, pages
+  29909--29921, 2021.
 
 \end{thebibliography}
