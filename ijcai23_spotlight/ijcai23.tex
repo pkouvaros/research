@@ -213,9 +213,9 @@ Section~2, overcomes the model checking barrier with the development of methods
 that enable the derivation of the number of agents that is sufficient to
 consider when evaluating a specification. Our studies in the analysis of NMAS,
 outlined in Section~3, include efficient methods for the verification of neural
-networks and mixed integer programming formulations for checking system-level
-specifications.  The paper concludes in Section~4 with directions for
-future work.
+networks and mixed-integer linear programming (MILP) formulations for checking
+system-level specifications.  The paper concludes in Section~4 with directions
+for future work.
 
 
 \section{Unbounded Multi-agent Systems}
@@ -354,7 +354,7 @@ techniques for the verification of opinion formation protocols in swarms, which
 we used to give formal guarantees on the outcome of consensus
 protocols~\cite{KouvarosLomuscio16b}. Still others facilitated the
 verification of strategic properties of UMAS expressed in a parameterised
-variant  of Alternating-time temporal logic that we
+variant  of alternating-time temporal logic that we
 introduced~\cite{KouvarosLomuscio16c}.
 
 I conclude this section by noting that complementary to protocol correctness,
@@ -399,46 +399,53 @@ We first discuss our work on the verification of standalone neural networks
 which forms the backbone of our studies on the analysis of  NMAS outlined later.
 
 
-\subsection{Neural network verification} The neural network verification problem is to
-determine whether the output of a neural network is as expected for a
-potentially infinite set of inputs. Perhaps the most common instantiation of the
-problem is the adversarial robustness check for computer vision models, whereby
-the set of inputs denotes imperceptible perturbations to a given image and the
-set of outputs encodes classification equivalence for all perturbations. While
-significant progress has been made in push-down engines to solve the
+\subsection{Neural network verification} The neural network verification
+problem is to determine whether the output of a given network is as expected for
+a potentially infinite set of inputs. One of its most common instantiations is
+the {\em local adversarial robustness problem} whereby the set of inputs denotes
+imperceptible perturbations to a given input and the set of outputs encodes
+classification equivalence for all perturbations.  
+
+While significant progress has been made in push-down engines to solve the
 problem~\cite{Brix+23}, scalability to industrial-size models found in complex
 tasks such as computer vision remains a key difficulty in the area.  
 
-Advances in the area are driven by {\em complete} and {\em incomplete} methods.
-Complete methods can in principle return a definite answer as to the whether the
+Advances are driven by {\em complete} and {\em incomplete} methods.  Complete
+methods can in principle return a definite answer as to the whether the
 verification problem is satisfied, whereas incomplete methods may be unable to
-decide one way or the other. Complete methods are based on exact MILP/SMT
-formulations SMT encodings or dedicated branch-and-bound procedures tackling the
-optimisation mappings of the problem.  Incomplete methods typically rely on
-linear/semi-definite relaxations of of the problem, which improves their
-scalability over complete methods, but potentially hinders their efficacy to
-solve the problem because of the induced over-approximations.
+decide one way or the other. Complete methods are based on exact MILP/SMT 
+formulations~\cite{Bastani+16,Katz+17} and dedicated branch-and-bound procedures
+that tackle optimisation mappings of the problem~\cite{Bunel+18}.  Incomplete
+methods rely on linear/semi-definite relaxations of the  ReLU
+non-linearities~\cite{WongKolter17,RaghunathanSteinhardtLiang18} thereby
+displaying better scalability over complete techniques. In the cases where the
+induced over-approximations  do not allow for solutions to be given, network
+properties such as operational bounds computed by the methods can be used to
+strengthen the formulations used in complete verification~\cite{Botoeva+20}.
+
 
 Our efforts in the area included methods towards improving scalability in
 complete verification and techniques in the direction of strengthening precision
-in incomplete verification. In complete verification, we have introduced the
+in incomplete verification. Concerning complete verification, we have introduced the
 novel concept of {\em ReLU dependency} whereby ReLU nodes are in a dependency
 relation if their operational states for a set of inputs is connected by logical
-implication.  We have devised methods for the computation of the dependency
-relations, which we  have translated into MILP cuts, thereby improving the
-efficacy of MILP formulations of the verification problem~\cite{Botoeva+20}.
-Further improvements have been possible via the derivation of dependency-based
-branching heuristics  in a branch-and-bound procedure~\cite{KouvarosLomuscio21}.
+implication.  We have devised methods for the computation of these dependencies,
+which we  have translated into MILP cuts, thereby improving the efficacy of MILP
+formulations~\cite{Botoeva+20}.  Further improvements have been possible via the
+derivation of dependency-based branching heuristics  in branch-and-bound
+procedures~\cite{KouvarosLomuscio21}.
 
 
-In incomplete verification, we have devised an abstraction method that
-strengthens the linear relaxations of ReLU nodes by additionally accounting for
-intra-layer dependencies, instead of simply the local over-approximation areas,
-when choosing a relaxation~\cite{HashemiKouvarosLomuscio21}. This enabled proofs
-of adversarial robustness to be given to computer vision models that could not
-be previously resolved. To a similar effect we have strengthen semidefinite
-approximations of the verification problem  considering layer-wise relaxations
-and incorporating linear cuts into the semidefinite formulation.
+Regarding incomplete verification, we have devised an abstraction method that
+strengthens the linear relaxations of the ReLU non-linearities by additionally
+accounting for intra-layer dependencies, instead of simply relying on local
+over-approximation areas, when choosing a
+relaxation~\cite{HashemiKouvarosLomuscio21}. This enabled proofs of adversarial
+robustness to be given to computer vision models whose verification problem
+could not be previously resolved. To a similar effect we have strengthen the
+semidefinite approximations of the ReLU non-linearities by considering
+layer-wise relaxations and incorporating linear cuts into their 
+formulation~\cite{Batten+21}.
 
 We have released the open-source neural network verification toolkit \venus
 implementing the aforementioned methods.  In the span of four years, \venus has
@@ -449,31 +456,52 @@ landing assistance systems~\cite{Kouvaros+21}, and semantic segmentation models
 for pose estimation~\cite{Kouvaros+23}.
 
 
-\subsection{NMAS verification} The scalability hurdle is even more prevalent in the
-formal analysis of closed-loop systems with neural components such as NMAS. In
-fact, we've shown their verification problem to be undecidable for plain
-reachability properties~\cite{Akintunde+22}. In the light of this we've isolated
-bounded fragments of CTL and ATL,  whereby formulae can be evaluated in a
-bounded number of execution steps, thus allowing for expressing properties
-concerning, for instance, whether the agents can bring about a state of affairs
-or reach a safe configuration within a bounded number of steps. We have shown
-that verification with respect to this fragment is in \conexptime and solved the
-resulting verification problem via a mixed-integer linear programming (MILP)
-formulations.  that encapsulate the neural network verification procedures
-described earlier for tight encodings of the
-networks~\cite{Akintunde+20,Akintunde+20b}. 
-To further alleviate the difficulty of the verification problem, we
-also introduce a novel algorithm that checks for the occurrence of
-bugs in parallel over the execution paths. As we show, in the case
-of bounded safety specifications, this enables us to return a bug to
-the user as soon as a violation is identified on any of the branching
-paths that are explored in parallel.
+\subsection{NMAS verification} The scalability hurdle previously discussed is
+even more prevalent when analysisng closed-loop systems with neural components
+such as NMAS. In particular, we've shown their verification problem to be
+undecidable for plain reachability properties~\cite{Akintunde+22}. In the light
+of this we've isolated bounded fragments of computation tree logic and
+alternating-time logic, where formulae can be evaluated in a bounded number of
+execution steps. This enabled us to analyse properties concerning, for instance,
+whether the agents can bring about a state of affairs or reach a safe
+configuration within a bounded number of steps. We have shown that verification
+with respect to these fragments is in \conexptime and solved the resulting
+verification problems via MILP formulations~\cite{Akintunde+20,Akintunde+20b}.
+At the heart of these formulations lie the the neural network verification
+procedures described earlier which are used for tightening the encodings of the
+networks.  Inspired by bounded model checking~\cite{Clarke+01a},  we have also
+developed compositional encodings,  which can be used to check for the
+occurrence of bugs in parallel over the execution paths. As we have
+experimentally shown, the encodings often help to alleviate the difficulty of
+verification by enabling the identification of property violations in shallow
+depths of the corresponding branching paths~\cite{Akintunde+20}.
+
+
+
 
 % monolithic and compositional verification algorithms
 
 
 \section{Conclusions and Future Work}
 
+As argued in the Introduction, with the development of autonomous agents and
+multi-agent systems in diverse applications, there is an urgent need to study
+principled methods for their verification before deployment. This paper gave an
+overview of some of the key methods that we put forward towards the verification
+of key classes of systems, including standalone neural networks and unbounded
+and neuro-symbolic multi-agent systems. 
+
+While significant progress has been made in the formal analysis of these
+systems, scalability remains the main challenge to overcome to address
+industrial-scale models embedded in forthcoming applications such as autonomous
+vehicles. Formal reasoning at this level needs also to account for richer
+specifications beyond the ones discussed in this paper, including robustness to
+semantic perturbations such as geometric transformations. 
+
+In future work we will focus on conquering the scalability of formal
+verification, extending the specification languages, and  expanding the formal
+models to account for richer classes of systems, including unbounded systems of 
+neuro-symbolic agents.
 
 
 \section*{Acknowledgments}

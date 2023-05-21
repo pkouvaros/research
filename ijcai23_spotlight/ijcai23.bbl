@@ -40,6 +40,21 @@ B.~Aminof, T.~Kotek, S.~Rubin, F.~Spegni, and H.~Veith.
 \newblock In {\em CONCUR 2014--Concurrency Theory}, pages 109--124. Springer,
   2014.
 
+\bibitem[\protect\citeauthoryear{Bastani \bgroup \em et al.\egroup
+  }{2016}]{Bastani+16}
+O.~Bastani, Y.~Ioannou, L.~Lampropoulos, D.~Vytiniotis, A.~V. Nori, and
+  A.~Criminisi.
+\newblock Measuring neural net robustness with constraints.
+\newblock In {\em NeurIPS16}, pages 2613--2621, 2016.
+
+\bibitem[\protect\citeauthoryear{Batten \bgroup \em et al.\egroup
+  }{2021}]{Batten+21}
+B.~Batten, P.~Kouvaros, A.~Lomuscio, and Y.~Zheng.
+\newblock Efficient neural network verification via layer-based semidefinite
+  relaxations and linear cuts.
+\newblock In {\em Proceedings of the 30th International Joint Conference on
+  Artificial Intelligence ({IJCAI}21)}, pages 2184--2190. ijcai.org, 2021.
+
 \bibitem[\protect\citeauthoryear{Belardinelli \bgroup \em et al.\egroup
   }{2017}]{BelardinelliKouvarosLomuscio17}
 F.~Belardinelli, P.~Kouvaros, and A.~Lomuscio.
@@ -75,11 +90,24 @@ Christopher Brix, Mark~Niklas M{\"u}ller, Stanley Bak, Taylor~T Johnson, and
   networks competition (vnn-comp).
 \newblock {\em arXiv preprint arXiv:2301.05815}, 2023.
 
+\bibitem[\protect\citeauthoryear{Bunel \bgroup \em et al.\egroup
+  }{2018}]{Bunel+18}
+R.~Bunel, I.~Turkaslan, P.~Torr, P.~Kohli, and P.~Mudigonda.
+\newblock A unified view of piecewise linear neural network verification.
+\newblock In {\em Proceedings of the 31st Annual Conference on Neural
+  Information Processing Systems (NeurIPS18)}, pages 4790--4799, 2018.
+
 \bibitem[\protect\citeauthoryear{Clarke \bgroup \em et al.\egroup
   }{1999}]{Clarke+99a}
 E.M. Clarke, O.~Grumberg, and D.A. Peled.
 \newblock {\em Model Checking}.
 \newblock The MIT Press, 1999.
+
+\bibitem[\protect\citeauthoryear{Clarke \bgroup \em et al.\egroup
+  }{2001}]{Clarke+01a}
+E.~Clarke, A.~Biere, R.~Raimi, and Y.~Zhu.
+\newblock Bounded model checking using satisfiability solving.
+\newblock {\em Formal Methods in System Design}, 19(1):7--34, 2001.
 
 \bibitem[\protect\citeauthoryear{Doshi-Velez and Kim}{2017}]{VelizKim17}
 F.~Doshi-Velez and B.~Kim.
@@ -276,6 +304,13 @@ W.~Penczek and A.~Lomuscio.
   model checking.
 \newblock {\em Fundamenta Informaticae}, 55(2):167--185, 2003.
 
+\bibitem[\protect\citeauthoryear{Raghunathan \bgroup \em et al.\egroup
+  }{2018}]{RaghunathanSteinhardtLiang18}
+A.~Raghunathan, J.~Steinhardt, and P.~S. Liang.
+\newblock Semidefinite relaxations for certifying robustness to adversarial
+  examples.
+\newblock In {\em NeurIPS18}, pages 10900--10910, 2018.
+
 \bibitem[\protect\citeauthoryear{Singh \bgroup \em et al.\egroup
   }{2019}]{Singh+19}
 G.~Singh, T.~Gehr, M.~P{\"u}schel, and P.~Vechev.
@@ -296,5 +331,11 @@ S.~Wang, H.~Zhang, K.~Xu, X.~Lin, S.~Jana, C.~Hsieh, and Z.Kolter.
   constraints for neural network robustness verification.
 \newblock In {\em Advances in Neural Information Processing Systems}, pages
   29909--29921, 2021.
+
+\bibitem[\protect\citeauthoryear{Wong and Kolter}{2018}]{WongKolter17}
+E.~Wong and J.~Kolter.
+\newblock Provable defenses against adversarial examples via the convex outer
+  adversarial polytope.
+\newblock In {\em ICML18}, pages 5286--5295, 2018.
 
 \end{thebibliography}

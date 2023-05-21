@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.4.28)  21 MAY 2023 14:41
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.4.28)  21 MAY 2023 21:31
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -695,102 +695,104 @@ Underfull \hbox (badness 4291) in paragraph at lines 38--42
  []
 
 
-Underfull \hbox (badness 1142) in paragraph at lines 52--55
+Underfull \hbox (badness 1142) in paragraph at lines 67--70
 []\T1/ptm/m/n/10 R. Bloem, S. Ja-cobs, A. Khal-imov,
  []
 
 
-Underfull \hbox (badness 2197) in paragraph at lines 72--77
+Underfull \hbox (badness 2197) in paragraph at lines 87--92
 \T1/ptm/m/n/10 Stan-ley Bak, Tay-lor T John-son, and Changliu Liu.
  []
 
-
-Underfull \hbox (badness 1226) in paragraph at lines 90--95
+[4]
+Underfull \hbox (badness 1226) in paragraph at lines 118--123
 []\T1/ptm/m/n/10 E. Emer-son and V. Kahlon.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 98--102
+Underfull \hbox (badness 10000) in paragraph at lines 126--130
 []\T1/ptm/m/n/10 E. Emer-son and
  []
 
 
-Underfull \hbox (badness 1281) in paragraph at lines 98--102
+Underfull \hbox (badness 1281) in paragraph at lines 126--130
 \T1/ptm/m/it/10 of Pro-gram-ming Lan-guages (POPL95)\T1/ptm/m/n/10 , pages 85--94.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 117--122
+Underfull \hbox (badness 10000) in paragraph at lines 145--150
 []\T1/ptm/m/n/10 P. Gam-mie and
  []
 
 
-Underfull \hbox (badness 1286) in paragraph at lines 117--122
+Underfull \hbox (badness 1286) in paragraph at lines 145--150
 \T1/ptm/m/it/10 Con-fer-ence on Com-puter Aided Ver-i-fi-ca-tion (CAV04)\T1/ptm/m/n/10 ,
  []
 
-[4]
-Underfull \hbox (badness 1142) in paragraph at lines 158--162
+
+Underfull \hbox (badness 1142) in paragraph at lines 186--190
 \T1/ptm/m/it/10 Con-fer-ence on Ar-ti-fi-cial In-tel-li-gence (AAAI15)\T1/ptm/m/n/10 , pages
  []
 
 
-Underfull \hbox (badness 1515) in paragraph at lines 201--205
+Underfull \hbox (badness 1515) in paragraph at lines 229--233
 \T1/ptm/m/it/10 Joint Con-fer-ence on Ar-ti-fi-cial In-tel-li-gence (IJ-CAI17)\T1/ptm/m/n/10 ,
  []
 
 
-Underfull \hbox (badness 3492) in paragraph at lines 216--222
+Underfull \hbox (badness 3492) in paragraph at lines 244--250
 []\T1/ptm/m/n/10 P. Kou-varos, A. Lo-mus-cio, and
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 225--230
+Underfull \hbox (badness 10000) in paragraph at lines 253--258
 []\T1/ptm/m/n/10 P. Kou-varos, A. Lo-mus-cio,
  []
 
 
-Underfull \hbox (badness 1642) in paragraph at lines 225--230
+Underfull \hbox (badness 1642) in paragraph at lines 253--258
 \T1/ptm/m/n/10 E. Pirovano, and H. Punchi-hewa.  For-mal ver-i-fi-ca-
  []
 
 
-Underfull \hbox (badness 1072) in paragraph at lines 225--230
+Underfull \hbox (badness 1072) in paragraph at lines 253--258
 \T1/ptm/m/it/10 18th In-ter-na-tional Con-fer-ence on Au-tonomous Agents
  []
 
 
-Underfull \hbox (badness 1024) in paragraph at lines 225--230
+Underfull \hbox (badness 1024) in paragraph at lines 253--258
 \T1/ptm/m/it/10 and Mul-ti-A-gent Sys-tems (AA-MAS19)\T1/ptm/m/n/10 , pages 179--187.
  []
 
 
-Underfull \hbox (badness 2096) in paragraph at lines 233--240
+Underfull \hbox (badness 2096) in paragraph at lines 261--268
 []\T1/ptm/m/n/10 P. Kou-varos, T. Ky-ono, F. Le-o-
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 251--256
+[5]
+Underfull \hbox (badness 10000) in paragraph at lines 279--284
 []\T1/ptm/m/n/10 A. Lo-mus-cio and
  []
 
-) [5] (./ijcai23.aux)
+) [6
+
+] (./ijcai23.aux)
 Package rerunfilecheck Info: File `ijcai23.out' has not changed.
 (rerunfilecheck)             Checksum: 249A164F8E226E5A99DB63E6A038EA31;1046.
  ) 
 Here is how much of TeX's memory you used:
- 13037 strings out of 476182
- 207501 string characters out of 5796604
+ 13052 strings out of 476182
+ 207716 string characters out of 5796604
  1885793 words of memory out of 6000000
- 33094 multiletter control sequences out of 15000+600000
+ 33102 multiletter control sequences out of 15000+600000
  554425 words of font info for 78 fonts, out of 8000000 for 9000
  1137 hyphenation exceptions out of 8191
  72i,8n,77p,302b,568s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/mlmodern/mlmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/mlmodern/mlmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on ijcai23.pdf (5 pages, 105894 bytes).
+Output written on ijcai23.pdf (6 pages, 109765 bytes).
 PDF statistics:
- 229 PDF objects out of 1000 (max. 8388607)
- 207 compressed objects within 3 object streams
- 55 named destinations out of 1000 (max. 500000)
+ 253 PDF objects out of 1000 (max. 8388607)
+ 230 compressed objects within 3 object streams
+ 62 named destinations out of 1000 (max. 500000)
  49 words of extra memory for PDF output out of 10000 (max. 10000000)
 
