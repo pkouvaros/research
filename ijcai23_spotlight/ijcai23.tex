@@ -12,7 +12,8 @@
 % The file ijcai22.sty is NOT the same as previous years'
 \usepackage{ijcai23}
 
-\input{preamble}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,mathtools}
 
 % Use the postscript times font!
 \usepackage{times}
@@ -34,11 +35,11 @@
 \newcommand{\nexptime}{\textsc{NExpTime}\xspace}
 \newcommand{\venus}{\textsc{Venus}\xspace}
 \newcommand{\mcmasp}{\textsc{MCMAS-P}\xspace}
-
+\newcommand{\set}[1]{\left\{ #1 \right \}}
 
 
 % Comment out this line in the camera-ready submission
-\linenumbers
+% \linenumbers
 
 \urlstyle{same}
 
@@ -86,7 +87,7 @@
 \author{
     Panagiotis Kouvaros
     \affiliations
-    Department of Computing, Imperial College London
+    Imperial College London, London, UK
     \emails
     p.kouvaros@imperial.ac.uk
 }
@@ -118,27 +119,32 @@ fourth@example.com
 \begin{abstract}
 
 This paper outlines some of the key methods we developed towards the formal
-verification of multi-agent systems, covering both symbolic and connectionist
-systems.  It discusses logic-based methods for the verification of unbounded
-multi-agent systems (i.e., systems composed of an arbitrary number of
-homogeneous agents, e.g., robot swarms), optimisation approaches for
-establishing the robustness of neural network models, and methods for analysing
-properties of neuro-symbolic multi-agent systems.
+    verification of multi-agent systems, covering both symbolic and
+    connectionist systems.  It discusses logic-based methods for the
+    verification of unbounded multi-agent systems (i.e., multi-agent systems
+    composed of an arbitrary number of homogeneous agents), optimisation
+    approaches for establishing the robustness of neural network models, and
+    mixed-integer linear programming methods for analysing properties of
+    neuro-symbolic multi-agent systems.
 
 \end{abstract}
 
 \section{Introduction}
 
-Recent advances in Artificial Intelligence (AI) have enabled the automation of
+Recent advances in  Artificial Intelligence (AI)  enabled the automation of
 challenging tasks, such as computer vision, that have been traditionally
-difficult to tackle using classical approaches.  This accelerated the trend of
-incorporating AI components in  diverse applications with high societal impact,
-such as healthcare and transportation. 
-
-Still, even though there is an increasing consensus in AI being beneficial for
-society,  its inherent fragility and opacity hinders its adoption in
-safety-critical applications. The associated risks are compounded in an
-increasingly inter-connected, socio-techno-economic world, where systems of
+difficult to tackle for decades. This accelerated the incorporation of  AI
+components in  diverse applications, including ones situated within domains, such as
+healthcare and transportation, where the impact to society can be significant.
+While however AI has the potential of revolutionising society,  its inherent
+fragility and opacity   hinders its adoption in safety-critical applications.
+The associated risks are compounded in an increasingly inter-connected
+%Still, even though there is an increasing consensus in AI being beneficial for
+%society,  its inherent fragility and opacity hinders its adoption in
+%safety-critical applications. The associated risks are compounded in an
+%increasingly inter-connected
+% socio-techno-economic
+world, where systems of
 multiple interacting intelligent agents, or multi-agent systems (MAS),
 constitute a paradigm shift from object-oriented to interaction-oriented design
 standards. 
@@ -146,10 +152,9 @@ standards.
 In response to these concerns the area of formal verification of AI has grown
 rapidly over the past few years to provide methods to automatically verify that
 AI systems robustly behave as intended.
-
 One of the key techniques that has emerged in the area is that of {\em model
 checking}~\cite{Clarke+99a}. Model checking provides automated solutions to 
-the problem of estabilishing whether a model $M_S$ representing a system $S$ satisfies a
+the problem of establishing whether a model $M_S$ representing a system $S$ satisfies a
 logical formula $\phi_P$ encoding a specification $P$. In the case of MAS,
 the formula $\varphi$ does not simply express temporal properties of systems, as
 in reactive systems, but it may also be accounting for high-level attitudes of
@@ -157,19 +162,19 @@ agency, such as knowledge and strategies, which can be described in
 temporal-epistemic logic~\cite{Fagin+95b} and alternating-time
 logic~\cite{Alur+98a}.
 
-Whilst a number of methods, such as binary binary decision
-diagrams~\cite{GammieMeyden04a} and bounded model
-checking~\cite{PenczekLomuscio03b},   enabled the  model checking  of complex systems of
-large state spaces, a main drawback of the approach remains the {\em state-space
-explosion problem}. Succinctly put, whereas model checking whether $M_S$
-satisfies $\phi$ can be solved in polynomial time~\cite{Clarke+99a}, the size of the model $M_S$ to
-analyse is exponential in the number of variables encoding the agents in the
-system $S$.  
+Whilst methods such as binary binary decision diagrams~\cite{GammieMeyden04a}
+and bounded model checking~\cite{PenczekLomuscio03b}   enabled the  model
+checking  of systems of large state spaces, a main drawback of the approach
+remains the state-space explosion problem, whereby the state-space grows
+exponentially in the number of variables encoding the agents.
+
+%growth of the state space in the number of
+%variables encoding the agents.
 
 Notwithstanding that in practice this limits model checking to the verification
 of systems with only few constituents, the analysis of  systems with arbitrarily many
-participants, such as robot swarms and  applications in the Internet of Things, 
-raises a principal barrier to the application of model checking.  Indeed, 
+participants, such as robot swarms  and  applications in the Internet of Things, 
+raises a principal barrier to its application.  Indeed, 
 verifying systems of this kind, henceforth {\em unbounded multi-agent systems}
 (UMAS), requires checking whether any system for any number of agents satisfies
 the specification in question. This  renders model checking intractable when 
@@ -191,23 +196,24 @@ enumerating and analysing all individual systems.
 % be repeated for any possible number of components
 
 Another key limitation of model checking is the requirement that the systems are
-given in traditional and agent-based programming languages, thereby not accounting
-for the recent shift to synthesise parts of the agents from data
-and implement via neural networks. Systems of this kind, henceforth {\em
-neuro-symbolic multi-agent systems} (NMAS), constitute important forthcoming
-applications, such as autonomous vehicles and personal negotiation assistants,
-where the neural components are employed to perform complex tasks, such as computer
-vision and natural language processing.
+given in traditional, agent-based programming languages, thereby not accounting for  
+ agents endowed with neural network components.
+Systems of this kind, henceforth {\em neuro-symbolic multi-agent systems}
+(NMAS), constitute important forthcoming applications, such as autonomous
+vehicles, where the neural components are responsible for automating complex tasks such
+as perception and control. 
 
-While the efficacy of neural networks with respect to these tasks has
-significantly improved over the past few years,  their fragility to adversarial
-attacks~\cite{Szegedy+14} and lack of interpretability~\cite{VelizKim17} raise 
-additional concerns regarding the overall system safety, thereby strengthening
-the need for their principled analysis before deployment.
+Even though neural networks exhibit remarkable performance on these tasks,
+their fragility to adversarial attacks~\cite{Szegedy+14} and
+their lack of interpretability~\cite{VelizKim17} raise additional concerns
+regarding the overall system safety, thereby strengthening the need for the
+principled analysis of NMAS before deployment.
 
 This paper gives an overview of the methods that we developed within the
-Verification of Automous Systems research
-group~\footnote{\url{https://vas.doc.ic.ac.uk}} towards the formal verification
+Verification of Autonomous Systems Research
+Group, Imperial College London, 
+%~\footnote{\url{https://vas.doc.ic.ac.uk}} 
+towards the formal verification
 of UMAS and NMAS.  Our pioneering work in the verification of UMAS, discussed in
 Section~2, overcomes the model checking barrier with the development of methods
 that enable the derivation of the number of agents that is sufficient to
@@ -224,27 +230,29 @@ Interpreted systems are a standard semantics for describing multi-agent
 systems~\cite{Fagin+95a}.  They provide a natural setup to interpret
 specifications in a variety of languages including temporal-epistemic logic and
 alternating temporal logic~\cite{Fagin+95b,LomuscioRaimondi06c}. Parameterised
-Interpreted Systems (PIS)  is a parametric extension to interpreted systems
+Interpreted Systems (PIS)  is a parametric extension of interpreted systems
 that we put forward  to reason about the temporal-epistemic properties of UMAS
 in both synchronous~\cite{KouvarosLomuscio15b} and
 asynchronous~\cite{KouvarosLomuscio16a} settings.   The parameter in PIS denotes
 the number of agents in the system, each homogeneously constructed from an agent
 template. 
 
-The verification problem for PIS (generally known as the {\em parameterised
-verification problem} in the reactive systems' literature~\cite{Bloem+15}) is to
+The verification problem for PIS is to
 check whether any system for any value of the parameter satisfies a given
-specification.  This is in general undecidable~\cite{KouvarosLomuscio16a}.
-Solutions to the problem can thus be given only in the form of incomplete techniques.
-Alternatively, decidable fragments can be curved by imposing
+specification.   
+% (generally known as the parameterised
+% verification problem~\cite{Bloem+15}) 
+This is in general undecidable~\cite{AptKozen86}.
+Solutions to the problem can thus be given only in the form of incomplete techniques, which can decide the problem only some of the times. 
+Alternatively, decidable fragments of the problem can be curved through the imposition of 
 restrictions on the systems and/or the specifications.  
 
-In either case, a key concept that enables the verification of UMAS 
-is that of a {\em cutoff}.  A cutoff is a natural number that expresses
-the number of agents that is sufficient to consider when evaluating a given 
-specification. In other words, if a cutoff can be computed, then the
-verification problem can be solved by checking all systems whose number of
-agents is below the cutoff value.
+In either case, a key concept that enables the verification of UMAS is that of
+a {\em cutoff}.  A cutoff is a natural number that expresses the number of
+agents that is sufficient to consider when evaluating a given specification. In
+other words, if a cutoff can be identified, then the verification problem can
+be solved by checking all systems whose number of agents is below the cutoff
+value.
 
 % ~\footnote{In addition to providing solutions to the
 % verification problem, the identification of cutoffs can also be used to check
@@ -263,9 +271,9 @@ Whilst we've shown that cutoffs do not always exist~\cite{KouvarosLomuscio13b},
 strong empirical evidence supports their existence for real-world
 systems~\cite{EmersonKahlon00,EmersonNamjoshi95,Benjamin+14}. Moreover, for the
 cases where they do not exist, theoretical analyses that we conducted show that
-these often concern systems that can exhibit {\em impractical} cyclic behaviours
-whose number of repetitions depends on the exact number of agents in the
-system~\cite{KouvarosLomuscio13b}.
+these often concern systems with {\em impractical} cyclic behaviours, which
+adhere to the peculiarity that their number of possible repetitions depends on
+the exact number of agents in the system~\cite{KouvarosLomuscio13b}.
 
 % verification queries for real-world systems an,
 % specifications often admin a cutoff.  Theoretical analyses also show that
@@ -283,41 +291,48 @@ system~\cite{KouvarosLomuscio13b}.
 % agents in the system (e.g, every agent in a system of any agents can never enter
 % an unsafe configuration). 
 
-Following these observations we have analysed various sufficient conditions for
-the identification of cutoffs. The conditions were drawn with respect to
-different  synchronisation primitives endowing the agents.  In the fully
-synchronous setting, we have shown that cutoffs can always be identified and
-gave a procedure for their computation~\cite{KouvarosLomuscio15b}.  In the
+In the light of these observations we have analysed various sufficient
+conditions for the identification of cutoffs. The conditions were drawn with
+respect to different  synchronisation primitives endowing the agents.  In the
+fully synchronous setting, we have shown that cutoffs can always be identified
+and gave a procedure for their computation~\cite{KouvarosLomuscio15b}.  In the
 asynchronous case, where agents communicate via broadcast actions, we have
 similarly given a sound and complete technique for their
-derivation~\cite{KouvarosLomuscio13a}. When the agents
-can additionally participate in pairwise communication with their environment,
-we have shown that if 
-\begin{itemize} \item[(i)] the environment can never block
-pairwise synchronisations for the system of one agent only, and \item[(ii)] each
+derivation~\cite{KouvarosLomuscio13a}. When the agents can additionally
+participate in pairwise communication with their environment, we have shown
+that if 
+\begin{itemize}
+    \item[(i)] the environment can never block pairwise
+synchronisations for the system of one agent only, and 
+\item[(ii)] each
 synchronisation can happen in unique configurations for the environment,
-\end{itemize} then  cutoffs can be computed in an efficient procedure that runs
-in linear time in the size of the agent template~\cite{KouvarosLomuscio13b}. The
-second restriction can be lifted in a cutoff procedure that runs in exponential
-time~\cite{KouvarosLomuscio15}. 
+\end{itemize} 
+then  cutoffs can be computed in an efficient procedure that runs
+in linear time in the size of the agent template~\cite{KouvarosLomuscio13b}.
+Following this, we have shown that the second restriction can be lifted in a
+cutoff procedure that runs in exponential time~\cite{KouvarosLomuscio15}. 
 
-While these results were drawn with respect to {\em homogeneous} UMAS, where every
-agent is instantiated from a unique agent template, we have also provided
+While these results were drawn with respect to {\em homogeneous} UMAS, where
+every agent is instantiated from a unique agent template, we have also provided
 extensions that account for {\em heterogeneous} UMAS, where agents can assume
 different roles and responsibilities, e.g., heterogeneous robot
-swarms~\cite{KouvarosLomuscio16a}. The heterogeneous semantics that we introduced allow for
-broadcast actions that may either concern all agents of all agent templates or
-all agents following a certain template. They additionally enable pairwise
-interactions between agents of different roles, thereby surpassing the
+swarms~\cite{KouvarosLomuscio16a}. The heterogeneous semantics that we
+introduced allow for broadcast actions that may either concern all agents of all
+templates or regard only all agents following a certain template. They additionally enable
+pairwise interactions between agents of different roles, thereby far surpassing the
 expressive power of the homogeneous model.
 
-Further gains in the expressivity of the protocols that can be verified have been
-obtained from our studies on UMAS programmed using variables with infinite
-domains~\cite{KouvarosLomuscio17a}. The resulting verification method  combines
-predicate abstraction~\cite{LomuscioMichaliszyn15} with parameterised
-verification, the former addressing the unboundedness of the state-space of the
-agents and the latter tackling the unboundedness of their number.  
+Further gains in the expressivity of the protocols that can be verified have
+been obtained from our studies on UMAS programmed using variables with infinite
+domains~\cite{KouvarosLomuscio17a}. Our resulting verification method 
+ combines predicate abstraction~\cite{LomuscioMichaliszyn15} with
+parameterised verification, the former addressing the unboundedness of the
+state-space of the agents and the latter tackling the unboundedness of their
+number.  
 
+Still  other expressivity advances  facilitated the  verification of
+strategic properties of UMAS expressed in a parameterised variant  of
+alternating-time temporal logic that we introduced~\cite{KouvarosLomuscio16c}.
 
 
 % Other
@@ -329,7 +344,7 @@ agents and the latter tackling the unboundedness of their number.
 % semantics~\cite{Kouvaros+19}.
 
 We have released the open-source parameterised verification toolkit \mcmasp
-implementing the cutoff procedures for UMAS.  \mcmasp enabled for the first time
+implementing these procedures.  \mcmasp enabled for the first time
 the verification of aggregation and foraging algorithms for robot swarms
 irrespective of the number of robots composing the
 swarm~\cite{KouvarosLomuscio15b,KouvarosLomuscio16a}.  
@@ -338,39 +353,38 @@ Further applications included the analysis of the security of an unbounded
 number of concurrent sessions of cryptographic protocols, for which we provided
 a mapping from a Dolev-Yao threat model to
 PIS~\cite{BoureanuKouvarosLomuscio16}.   
-Others concerned  the verification of UMAS comprising {\em data-aware agents},
+
+Others concerned  the verification of UMAS composed of {\em data-aware agents},
 i.e., agents that are endowed with possibly infinite domains and that interact
 with an environment composed of (semi)-structured
-data~\cite{MontaliCalvaneseGiacomo14}.  Having used simulation-based
+data.  Having used simulation-based
 abstractions to deal with the infinity of the  agents, we have then presented  a
 translation  to PIS to solve their verification
-problem~\cite{BelardinelliKouvarosLomuscio17}. Analogous translations to PIS were 
- given for {\em open MAS},  where countably many agents can join and
-leave the system at runtime~\cite{Kouvaros+19}.
+problem~\cite{BelardinelliKouvarosLomuscio17}. 
+Analogous translations to PIS have enabled us to give verification procedures
+for {\em open MAS},  where countably many agents can join and leave the system
+at runtime~\cite{Kouvaros+19}.
 
 
-Finally,  adaptations of the verification methods for PIS  enabled us to derive
-techniques for the verification of opinion formation protocols in swarms, which
-we used to give formal guarantees on the outcome of consensus
-protocols~\cite{KouvarosLomuscio16b}. Still others facilitated the
-verification of strategic properties of UMAS expressed in a parameterised
-variant  of alternating-time temporal logic that we
-introduced~\cite{KouvarosLomuscio16c}.
+Yet other applications included adaptations of the underlying parameterised
+verification methods that  enabled us to derive techniques for the verification
+of opinion formation protocols in swarms. These were used to give formal
+guarantees on the outcome of consensus protocols~\cite{KouvarosLomuscio16b}. 
 
-I conclude this section by noting that complementary to protocol correctness,
-which the aforementioned  methods can formally ascertain, the evaluation
-of protocols also requires   analyses of the extent to which they are are
-resilient to adverse functioning behaviours for some of the agents in the
-system.  For instance, when evaluating a robot swarm search-and-rescue scenario,
-it is not sufficient to establish that the swarm will collectively cover the
-search area, but it is also crucial to determine that local faults, e..g,
-hardware malfunctions, will be tolerated by the swarm, instead of being
-propagated through agent interactions thereby dis-coordinating the search. To
-address this concern we have put forward an automated procedure to establish the
-robustness of UMAS against a given ratio of faulty to non-faulty agents in the
+Finally, complementary to protocol correctness, which the aforementioned
+methods can formally ascertain, the evaluation of protocols also requires
+analyses of the extent to which they are are resilient to adverse functioning
+behaviours for some of the agents in the system.  For instance, when evaluating
+a robot swarm search-and-rescue scenario, it is not sufficient to establish
+that the swarm will collectively cover the search area, but it is also crucial
+to determine that local faults, e..g, hardware malfunctions, will be tolerated
+by the swarm, as opposed to being propagated through agent interactions with
+the result of  dis-coordinating the search. To address this concern we have put
+forward an automated procedure to establish the robustness of UMAS against a
+given ratio of faulty to non-faulty agents in the
 system~\cite{KouvarosLomuscio17b}, which we followed by a symbolic method to
-automatically synthesise the maximum ratio of faulty to non-faulty agents a UMAS
-can tolerate~\cite{KouvarosLomuscioPirovano18}.  
+automatically synthesise the maximum ratio of faulty to non-faulty agents the
+system can tolerate~\cite{KouvarosLomuscioPirovano18}.  
 
 
 
@@ -389,23 +403,24 @@ pose significant  challenges to the verification problem.  In particular,
 differently from traditional verification for symbolic systems, where atomic
 formulae are evaluated in constant time at symbolic states of the system, the
 evaluation of atomic formulae in NIS includes the computation of the output
-regions of the neural networks  for a (potentially infinite) set of inputs,
-which is an NP-complete problem~\cite{Katz+17}. Increasingly sophisticated
-solutions to the problem have been put forward in the past few years  offering
-a principled way of analysing the robustness of neural networks to adversarial
-attacks~\cite{Singh+19,KouvarosLomuscio21,Wang+21}
+regions of the neural networks  for a (potentially infinite) set of inputs. This is 
+ an NP-complete problem~\cite{Katz+17}. Increasingly sophisticated
+solutions to the problem have been put forward in the past few years  with a focus on 
+the analysis of neural network robustness against adversarial
+attacks~\cite{Singh+19,KouvarosLomuscio21,Wang+21}.
 
 We first discuss our work on the verification of standalone neural networks
-which forms the backbone of our studies on the analysis of  NMAS outlined later.
+which forms the backbone of our studies on the analysis of  NMAS later outlined.
 
 
-\subsection{Neural network verification} The neural network verification
+\subsection{Neural Network Verification} The neural network verification
 problem is to determine whether the output of a given network is as expected for
-a potentially infinite set of inputs. One of its most common instantiations is
-the {\em local adversarial robustness problem} whereby the set of inputs denotes
-imperceptible perturbations to a given input and the set of outputs encodes
-classification equivalence for all perturbations.  
+a potentially infinite set of inputs. 
 
+One of its most common instantiations is
+the {\em local adversarial robustness problem} whereby the set of inputs denotes
+imperceptible perturbations on a fixed input and the set of outputs encodes
+classification equivalence for all perturbations.  
 While significant progress has been made in push-down engines to solve the
 problem~\cite{Brix+23}, scalability to industrial-size models found in complex
 tasks such as computer vision remains a key difficulty in the area.  
@@ -413,74 +428,71 @@ tasks such as computer vision remains a key difficulty in the area.
 Advances are driven by {\em complete} and {\em incomplete} methods.  Complete
 methods can in principle return a definite answer as to the whether the
 verification problem is satisfied, whereas incomplete methods may be unable to
-decide one way or the other. Complete methods are based on exact MILP/SMT 
+decide the one way or the other. Complete methods are based on exact MILP/SMT 
 formulations~\cite{Bastani+16,Katz+17} and dedicated branch-and-bound procedures
 that tackle optimisation mappings of the problem~\cite{Bunel+18}.  Incomplete
 methods rely on linear/semi-definite relaxations of the  ReLU
 non-linearities~\cite{WongKolter17,RaghunathanSteinhardtLiang18} thereby
-displaying better scalability over complete techniques. In the cases where the
+displaying better scalability over complete ones. In the cases where the
 induced over-approximations  do not allow for solutions to be given, network
 properties such as operational bounds computed by the methods can be used to
 strengthen the formulations used in complete verification~\cite{Botoeva+20}.
 
 
 Our efforts in the area included methods towards improving scalability in
-complete verification and techniques in the direction of strengthening precision
-in incomplete verification. Concerning complete verification, we have introduced the
-novel concept of {\em ReLU dependency} whereby ReLU nodes are in a dependency
-relation if their operational states for a set of inputs is connected by logical
-implication.  We have devised methods for the computation of these dependencies,
-which we  have translated into MILP cuts, thereby improving the efficacy of MILP
-formulations~\cite{Botoeva+20}.  Further improvements have been possible via the
-derivation of dependency-based branching heuristics  in branch-and-bound
-procedures~\cite{KouvarosLomuscio21}.
+complete verification and techniques in the direction of strengthening
+precision in incomplete verification. Concerning complete verification, we have
+introduced the novel concept of {\em ReLU dependencies} whereby ReLU nodes are
+in a dependency relation if their operational states for a set of inputs is
+connected by logical implication.  We have devised methods for the computation
+of these dependencies, which we  have translated into MILP cuts, thereby
+improving the efficacy of MILP formulations of the verification
+problem~\cite{Botoeva+20}.  Further improvements have been made possible via
+the exploitation of dependency-based branching heuristics  in branch-and-bound
+procedures that we introduced~\cite{KouvarosLomuscio21}.
 
 
-Regarding incomplete verification, we have devised an abstraction method that
-strengthens the linear relaxations of the ReLU non-linearities by additionally
-accounting for intra-layer dependencies, instead of simply relying on local
-over-approximation areas, when choosing a
-relaxation~\cite{HashemiKouvarosLomuscio21}. This enabled proofs of adversarial
-robustness to be given to computer vision models whose verification problem
-could not be previously resolved. To a similar effect we have strengthen the
-semidefinite approximations of the ReLU non-linearities by considering
-layer-wise relaxations and incorporating linear cuts into their 
-formulation~\cite{Batten+21}.
+Regarding incomplete verification, we have devised abstraction methods that
+strengthened the previously considered linear relaxations of the ReLU
+non-linearities. The methods accomplished this by  additionally accounting for
+intra-layer dependencies, instead of simply relying on local over-approximation
+areas, when choosing a relaxation. This enabled us to give proofs of
+adversarial robustness for computer vision models whose verification problem
+could not be previously resolved~\cite{HashemiKouvarosLomuscio21}. To a similar
+effect we have strengthened the semidefinite approximations of the ReLU
+functions through  the construction of layer-wise relaxations and the
+incorporation of linear cuts into their formulation~\cite{Batten+21}.
 
 We have released the open-source neural network verification toolkit \venus
-implementing the aforementioned methods.  In the span of four years, \venus has
+implementing these methods.  In the span of four years, \venus has
 progressed from analysing networks of few thousands of nodes to examining
 networks of millions of nodes. Among the latter are neural network-based systems
-in the aircraft domain developed by Boeing, including object detection and
+in the aircraft domain developed by Boeing. These  include object detection and
 landing assistance systems~\cite{Kouvaros+21}, and semantic segmentation models
 for pose estimation~\cite{Kouvaros+23}.
 
+\subsection{NMAS Verification} The scalability hurdle previously discussed is
+even more prevalent when analysing closed-loop systems with neural components
+such as NMAS.  In particular, we have shown their verification problem to be
+undecidable for plain reachability properties~\cite{Akintunde+22}. 
 
-\subsection{NMAS verification} The scalability hurdle previously discussed is
-even more prevalent when analysisng closed-loop systems with neural components
-such as NMAS. In particular, we've shown their verification problem to be
-undecidable for plain reachability properties~\cite{Akintunde+22}. In the light
-of this we've isolated bounded fragments of computation tree logic and
-alternating-time logic, where formulae can be evaluated in a bounded number of
-execution steps. This enabled us to analyse properties concerning, for instance,
-whether the agents can bring about a state of affairs or reach a safe
-configuration within a bounded number of steps. We have shown that verification
-with respect to these fragments is in \conexptime and solved the resulting
-verification problems via MILP formulations~\cite{Akintunde+20,Akintunde+20b}.
-At the heart of these formulations lie the the neural network verification
-procedures described earlier which are used for tightening the encodings of the
-networks.  Inspired by bounded model checking~\cite{Clarke+01a},  we have also
-developed compositional encodings,  which can be used to check for the
-occurrence of bugs in parallel over the execution paths. As we have
-experimentally shown, the encodings often help to alleviate the difficulty of
-verification by enabling the identification of property violations in shallow
-depths of the corresponding branching paths~\cite{Akintunde+20}.
+In the light of this, we have isolated bounded fragments of computation tree
+logic and alternating-time logic, where formulae can be evaluated in a bounded
+number of execution steps. This enabled us to analyse properties concerning,
+for instance, whether the agents can bring about a state of affairs or reach a
+safe configuration within a bounded number of steps. We have shown that
+verification with respect to these fragments is in \conexptime and solved the
+resulting verification problems via MILP
+formulations~\cite{Akintunde+20,Akintunde+20b}. At the core of the formulations
+are adaptations of the neural network verification procedures earlier described
+which facilitate tight encodings of satisfaction checks for atomic formulae. 
 
-
-
-
-% monolithic and compositional verification algorithms
-
+Finally, to further alleviate the difficulty of verification, we have
+developed compositional MILP encodings. Inspired by bounded model
+checking~\cite{Clarke+01a}, these can be used to check for the occurrence of
+bugs in parallel over the execution paths. Consequently, as we have
+experimentally shown, the encodings often enable the identification of bugs in
+shallow execution depths~\cite{Akintunde+20}.
 
 \section{Conclusions and Future Work}
 
@@ -488,15 +500,14 @@ As argued in the Introduction, with the development of autonomous agents and
 multi-agent systems in diverse applications, there is an urgent need to study
 principled methods for their verification before deployment. This paper gave an
 overview of some of the key methods that we put forward towards the verification
-of key classes of systems, including standalone neural networks and unbounded
-and neuro-symbolic multi-agent systems. 
+of key classes of systems, including standalone neural networks, unbounded multi-agent systems, 
+and  neuro-symbolic multi-agent systems. 
 
-While significant progress has been made in the formal analysis of these
-systems, scalability remains the main challenge to overcome to address
-industrial-scale models embedded in forthcoming applications such as autonomous
-vehicles. Formal reasoning at this level needs also to account for richer
-specifications beyond the ones discussed in this paper, including robustness to
-semantic perturbations such as geometric transformations. 
+While significant progress has been made,  scalability remains the main
+challenge to overcome in order to address the  systems embedded
+in forthcoming applications such as autonomous vehicles. Formal reasoning for
+such systems needs to also  account for specifications beyond the ones
+discussed in this paper, including robustness to semantic perturbations.
 
 In future work we will focus on conquering the scalability of formal
 verification, extending the specification languages, and  expanding the formal
@@ -504,15 +515,32 @@ models to account for richer classes of systems, including unbounded systems of
 neuro-symbolic agents.
 
 
+
+
+% \subsection{NMAS verification} The scalability hurdle previously discussed is
+% even more prevalent when analysisng closed-loop systems with neural components
+% such as NMAS. In particular, we've shown their verification problem to bealice in chainsant progress has been made in the formal analysis of these
+% systems, scalability remains the main challenge to overcome to address
+% industrial-scale models embedded in forthcoming applications such as autonomous
+% vehicles. Formal reasoning at this level needs also to account for richer
+% specifications beyond the ones discussed in this paper, including robustness to
+% semantic perturbations such as geometric transformations. 
+
+% In future work we will focus on conquering the scalability of formal
+% verification, extending the specification languages, and  expanding the formal
+% models to account for richer classes of systems, including unbounded systems of 
+% neuro-symbolic agents.
+
+
 \section*{Acknowledgments}
 
-I am grateful to the Verification of Autonomous Systems research group, Imperial
+I am grateful to the Verification of Autonomous Systems Research Group, Imperial
 College London, for the mentoring and support in conducting the research
 presented in this paper. I acknowledge the financial support of the DARPA
-Assured Autonomy Programme (FA8750-18-C-0095) and the EPSRC Research Project
-Trusted Autonomous Systems (EP/I00520X/1). Finally, I thank the IJCAI 2023 program
-committee for the  invitation to deliver a spotlight talk in the Early Career
-Spotlight Track.
+Assured Autonomy Programme (FA8750-18-C-0095), and the EPSRC Research Projects 
+Trusted Autonomous Systems (EP/I00520X/1) and  Secure AI Assistants
+(EP/T026731/1). Finally, I thank the IJCAI 2023 program committee for the
+invitation to deliver a spotlight talk in the Early Career Spotlight Track.
 
 
 
