@@ -1,0 +1,773 @@
+\documentclass[10pt]{beamer}
+\usetheme{metropolis}
+\metroset{block=fill}
+
+\newcommand{\relu}[0]{\mathsf{ReLU}}
+
+\usepackage[sfdefault]{FiraSans}
+\renewcommand*\oldstylenums[1]{{\firaoldstyle #1}}
+
+\input{preamble}
+\usepackage{multimedia}
+\usepackage{graphicx}
+\definecolor{navyblue}{RGB}{0,0,128}
+\tikzset{
+    descr/.style={
+        fill=white,
+        inner sep=2.5pt
+    },
+    connector/.style={
+     -latex,
+     font=\normalsize
+    },
+    rectangle connector/.style={
+        connector,
+        to path={(\tikztostart) -- ++(#1,0pt) \tikztonodes |- (\tikztotarget) },
+        pos=0.5
+    },
+    rectangle connectorh/.style={
+        connector,
+        to path={(\tikztostart) -- ++(0pt,#1)  -| (\tikztotarget) \tikztonodes },
+        pos=0.5
+    },
+    rectangle connector/.default=-2cm,
+    straight connector/.style={
+        connector,
+        to path=--(\tikztotarget) \tikztonodes
+    }
+}
+
+%\usetikzlibrary{shapes,arrows,positioning,fit,chains,shapes.multipart,calc}
+\tikzstyle{line}=[draw,-latex']
+
+\newlength{\mfw}
+\setlength{\mfw}{0.4\linewidth}
+
+
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
+
+
+\begin{document}
+
+\title{Formal Verification of Neuro-symbolic Multi-agent Systems}
+\author{ Panagiotis Kouvaros} 
+\institute[U of X]
+{
+Department of Computing, Imperial College London, UK \\ \\
+
+Joint work with Michael Akintunde, Francesco Belardinelli, Ioana
+Boureanu,  Elena Botoeva, Jan Kronqvist,
+Alessio Lomuscio, Ruth Misener
+}
+\date{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  	\maketitle
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{AI safety}
+
+	Rapid progress in AI in diverse domains, including natural
+	language processing, computer vision, autonomous vehicles.
+
+	\vspace{2em}
+
+	Increasing prevalence of AI to society (healthcare,
+	transportation, finance, e-commerce).
+
+
+	\vspace{2em}
+
+	Potentially AI will be \alert{highly beneficial} to society.
+
+
+	\vspace{2em}
+
+	Yet, its inherent \alert{lack of explainability} and
+	\alert{fragility} hinders the its adoption by society.
+\end{frame}	
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{AI perils}
+
+\begin{center}
+	\includegraphics[width=\textwidth]{tesla.png}
+\end{center}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Research aim}
+		
+	The development of methods to show that AI \alert{robustly behaves as
+	intended}.
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Formal verification of AI}
+	
+	Formal verification has long been used for the certification of
+	safety-critical systems.
+
+	\begin{block}{Formal verification problem}
+			\begin{large}
+		
+		\[
+			\mathcal M_S \models \varphi_P ?
+		\]
+
+			\end{large}
+
+	\end{block}
+
+	\alert{$\mathcal{M}_S$} is a semantic model of a MAS $S$
+	\begin{center}
+	\input{agent.tex}	
+	\end{center}
+	\alert{$\phi_P$} is a logical formula (temporal, epistemic,
+	ATL, \ldots) encoding a specification~$P$ for the MAS $S$ under
+	analysis
+
+	% Problem has many instantiation woth of consideration.
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Noteworthy instantiations}
+%\begin{columns}
+%\begin{column}{0.3\textwidth}
+	%\begin{block}{Symbolic agents}
+		%\input{symagent.tex}
+	%\end{block}
+%\end{column}
+%\begin{column}{0.3\textwidth}
+	%\begin{block}{Neural agents}
+		%\input{neuralagent.tex}
+	%\end{block}
+%\end{column}
+%\begin{column}{0.4\textwidth}
+	%\begin{block}{Neural-symbolic agents}
+		%\input{neurosymagent.tex}
+	%\end{block}
+%\end{column}
+%\end{columns}
+
+
+\begin{enumerate} \itemsep 3em
+	\item Agent swarms  (decentralised systems with
+		arbitrarily many participants, e.g., robot swarms)
+
+	\item Standalone neural agents (e.g., perception)
+
+	\item Neural-symbolic multi-agent systems (e.g., autonomous vehicles)
+\end{enumerate}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Swarm systems}
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{swarm.jpg}
+\end{figure}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Verification of swarm systems}
+
+\begin{Large}
+\begin{center}
+$M_{S} \models \varphi_{P} ?$
+\end{center}
+\end{Large}
+
+\vspace{2em}
+
+\alert{ Problem:} Swarms have {\em arbitrarily many}
+ agents. Traditional techniques target offline verification for
+ systems composed of a {\em known} number of agents.
+
+ \vspace{2em}
+
+ Establish properties of protocols \alert{ irrespective of the
+		number of agents present}.
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Parameterised verification}
+
+	\alert{PIIS}: a {\em parameterised} semantic structure where the
+	parameter is the number of agents in the system. 
+
+	\vspace{1em}
+
+	\alert{IACTLK}: an \emph{indexed}
+	version of the  temporal-epistemic logic  ACTLK that allows for
+	expressing properties irrespective of the number of agents in the
+	system.
+
+	\vspace{1em}
+
+	\begin{block}{Parameterised verification problem}
+		Given a PIIS $\mathcal{S}$ and   an IACTLK formula $\phi$
+		establish whether 
+		\[ \forall n \in \mathbb{N} \colon
+		\mathcal{S}(n) \models \varphi \]
+	\end{block}
+
+
+	\vspace{1em}
+
+	\begin{theorem}
+		The PVP for PIIS is undecidable.
+	\end{theorem}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Cutoffs}
+ 
+\begin{definition}[Cutoff]
+A natural number   $c \in \mathbb{N}$ is said to be a \emph{cutoff}
+for a PIIS $\mathcal{S}$ and a formula $\varphi$ if
+  \[ 
+    \mathcal{S}(c) \models \varphi \Leftrightarrow \forall n \geq c \colon 
+    \mathcal{S}(n) \models \varphi
+ \]
+\end{definition}
+
+	\vspace{1em}
+
+\begin{alertblock}{Solving the PVP via cutoffs}
+If a cutoff exists, then the PMCP can be solved by checking  all
+the concrete systems up to the cutoff.
+\end{alertblock}
+
+	\vspace{1em}
+
+\begin{itemize}
+	\item Various classes of systems with different synchronisation
+		primitives were studied and various cutoff
+		identification methods were developed [AIJ, AAMAS13, IJCAI13, AAAI15,
+		IJCAI15, AAMAS16, IJCAI17].
+\end{itemize}
+
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+\begin{frame}{Implementation: \texttt{MCMAS-P}}
+
+\begin{figure}
+\begin{center} 
+\input{mcmasp.tikz} 
+\end{center}
+{Available for download from \url{http://vas.doc.ic.ac.uk/}}. 
+\end{figure}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{frame}{Alpha swarm aggregation algorithm}
+	Verification of the Alpha swarm aggregation algorithm 
+	\begin{center}
+  \input{swarms.tex}
+  \end{center}
+  against the connectedness property $\forall i \colon
+  AGAF\sf{connected}(i)$
+\input{exp.tex}
+
+	Traditional verification can verify the system with up to 7
+	robots, whereas \texttt{MCMMAS-P} establishes the satisfaction of
+	the property in a system of any size.
+
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\begin{frame}{Other applications}
+
+	%\begin{itemize}\itemsep 0.8cm
+		%\item Security protocols [AAMAS16]
+		%\item Auction protocols [IJCAI17]
+		%\item Fault tolerance [IJCAI17, IJCAI18]
+		%\item Open systems [AAMAS19]
+	%\end{itemize}
+%\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\begin{frame}{ML-driven system design}
+	%\hskip 11em
+	%\color{blue}{Complex system}	
+	%\begin{figure}
+		  %\centering
+		  %\includegraphics[width=0.4\textwidth]{ml0.jpeg}
+	%\end{figure}
+
+	%\vspace{-2em}
+	%\begin{figure}
+		%\centering
+		%\begin{tikzpicture}
+			%\node [] (a) {};
+			%\node [below of=a, yshift=1em] (b) {};
+			 %\path[->,very thick,every node/.style={->,font=\sffamily\normalsize}]
+              %(a) edge node [] {} (b);
+		%\end{tikzpicture}
+	%\end{figure}
+	%\vspace{-2em}
+	%\begin{figure}
+		  %\centering
+		  %\includegraphics[width=0.7\textwidth]{ml1.png}
+	%\end{figure}
+%\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Neural agents}
+
+\begin{center}
+
+	\begin{tikzpicture}
+
+		\node[draw=navyblue,fill=navyblue!5!white,rectangle,inner
+		sep=0.2cm] (l)
+	{\includegraphics[width=\textwidth]{nn.png}};
+	\end{tikzpicture}
+\end{center}
+\vfill
+\begin{scriptsize}
+Figure from [Katz et al., 2017]
+\end{scriptsize}
+\end{frame}
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{ReLU networks}
+
+\begin{columns}
+\begin{column}{0.6\textwidth}
+Each hidden node (in purple) computes a weighted sum of its
+	inputs on which it then applies the ReLU function to derive its
+	output.
+\end{column}
+\begin{column}{0.3\textwidth}
+	\scalebox{1}{
+	\begin{tikzpicture}
+		\node[draw=navyblue,fill=navyblue!5!white,rectangle,inner
+		sep=0.2cm] (l)
+	{\includegraphics[width=\textwidth]{nn.png}};
+	\end{tikzpicture}
+	}
+\end{column}
+\end{columns}
+\vspace{1em}
+
+
+\begin{columns}
+\begin{column}{0.6\textwidth}
+\alert{ReLU function}: $\relu(x) = \max(x,0)$
+\end{column}
+\begin{column}{0.3\textwidth}
+	\input{relaxation}
+\end{column}
+\end{columns}
+\vspace{1em}
+ReLU is \alert{piecewise-linear}, hence ReLU networks are amenable to
+\alert{complete verification}.
+\end{frame}
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Fragility of neural networks}
+
+\begin{figure}
+	\centering
+	\input{fragility}
+\end{figure}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Verification problem}
+
+\begin{definition}[Verification problem.]
+	Given a feed-forward ReLU neural  network $f \colon \mathbb R^{s_0}
+	\rightarrow \mathbb{R}^{s_k}$, $\mathcal X \subseteq
+	\mathbb R^{s_0}$, $\mathcal Y \subseteq \mathbb
+	R^{s_k}$, check whether 
+\[
+	\forall  x \in \mathcal X  \colon f(x) \in
+	\mathcal Y.
+\]
+\end{definition}
+
+\vspace{2em}
+
+\begin{itemize}  \itemsep 1em
+	\item NP-complete [Katz et al., 2017], \alert{scalability} remains an issue.
+	\item Need for novel methods tailored towards the exploitation of
+		the highly structured nature of neural networks.
+\end{itemize}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Dependency analysis}
+
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\begin{block}{MILP compilation of a ReLU node}
+		\vspace{-1.5em}
+\begin{align*}
+	&x \geq 0, \;\;\;\;\;\;\;\;\; x \geq \hat{x} \\
+	&x \leq u \cdot \delta, \;\;\;\;\; x \leq \hat{x} - l \cdot (1 - \delta)
+\end{align*}
+where $x$ is the output of the node, $\hat{x}$ its
+pre-activation, $l$ and $u$ are  lower and upper bounds of the pre-activation 
+ and $\delta$ a
+binary variable.
+\end{block}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{block}{ReLU space}
+	\begin{center}
+	\input{reluspace}
+\end{center}
+\end{block}
+\end{column}
+\end{columns}
+\vspace{2em}
+\alert{Dependency analysis} [AAAI19]:   Methods aiming at the
+reduction of the ReLU space during branch-and-bound through the
+exploitation of notions of dependencies between the nodes. \end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{\texttt{Venus}}
+	SoA sound and complete verification toolkit for ReLU networks
+	\vspace{1em}
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\begin{figure}
+\centering
+\includegraphics[width=1.2\textwidth]{venus2.pdf}
+\end{figure}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{figure}
+\centering
+\includegraphics[width=0.8\textwidth]{venus.pdf}
+\end{figure}
+\end{column}
+\end{columns}
+\vspace{1em}
+Dependency analysis improves the performance of MILP-based
+verification of neural networks.
+\vspace{1em}
+
+Venus outperforms the SoA by up to \alert{two orders of magnitude}
+for perception networks.
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Neural-symbolic multi-agent systems}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{cars.jpg}
+\end{figure}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Neural-symbolic multi-agent systems}
+
+  \begin{block}{Verification problem}
+	  Given a NMAS $\mathcal S$ and a temporal/strategic (CTL/ATL)
+	  property $\varphi$, check whether every initial state in
+  $\mathcal S$ 
+	  satisfies $\varphi$.
+  \end{block}
+
+	
+ 	\vspace{3em}
+
+  
+  \begin{theorem}
+	  Verifying NMAS against reachability properties (i.e., the system
+	  eventually reaches an unsafe state) is undecidable [AAMAS20].
+  \end{theorem}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{ Verification against bounded properties}
+
+
+	Evaluation of \alert{bounded properties} concerns only a bounded number of
+	time-steps from the evaluation state.
+
+	E.g., \emph{bounded safety}: \[AG^k \mathit{safe} \triangleq
+	AX^1\mathit{safe} \land AX^2 \mathit{safe} \land \dots \land AX^k
+\mathit{safe}\]
+
+  The verification problem for bounded properties admits a \alert{
+  MILP representation}:
+  \begin{columns}
+   \begin{column}{0.5\textwidth}
+	   \begin{block}{Monolithic encoding}
+  	\centering
+	\includegraphics[width=0.9\textwidth]{enc.png}
+  \end{block}
+  \end{column}
+   \begin{column}{0.5\textwidth}
+	   \begin{block}{Compositional encoding}
+  	\centering
+	\includegraphics[width=0.9\textwidth]{enc2.png}
+  \end{block}
+  \end{column}
+  \end{columns}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Two agent aircraft collision avoidance}
+  \begin{center}
+	  \scalebox{0.8}{
+    \begin{tikzpicture}%[remember picture, overlay, shift={(7.5,5.5)},xscale=0.5]
+      \footnotesize
+      \draw[rounded corners, very thick] (-0.5,-1.2) rectangle (8,1.7);
+      \path[fill=gray!20] (2,-1) node[above right] {NMAC zone}%
+      rectangle (7,1);
+
+      \node[scale=1.5, rotate=-10, inner sep=0] (ownship) at (0,1.31) {\Plane};
+
+      \node[scale=1.5, rotate=-20, xscale=-1, inner sep=0,red, anchor=east] (intruder) at (7,-0) {\Plane};
+
+      \draw[dashed, gray] (intruder) -- ++(-20:-2);
+      \draw[dashed, gray] (ownship) -- ++(-10:2);
+
+      \coordinate (height) at (4.5,1.31);
+      \draw[dotted] (ownship.0) -- (height);
+      \draw[dotted] (intruder.0) -- (height|-intruder.0);
+      \draw[decorate, decoration=brace] (height) -- node[right] {$h$}
+      (height|-intruder.0);
+
+      \coordinate (lower) at (2,-0.1);
+      \draw[<->] (lower) -- node[below] {$\tau$} (ownship.0|-lower);
+
+      \draw[-stealth] (ownship.0) -- ++(0,-0.285) node[right] {$\crown$};
+      \draw[-stealth] (intruder.0) -- ++(0,0.285) node[above] {$\crint$};
+	\end{tikzpicture}}
+  \end{center}
+
+  \begin{itemize} \itemsep 0.5cm
+	\item Two aircraft: \alert{ownship} (black), \alert{intruder} (red).
+	\item Each aircraft is controlled by a \alert{VerticalCAS system}
+		(ReLU network), issuing an advisory for the range of
+		accelerations the pilot should apply to avoid a {\em near
+		min-air collision}.
+	\item  We would like to establish that the ownship has a
+strategy for the system to be in a safe configuration after~$k$ steps:
+
+\[ \varphi_{1}^k = \egamma[\own]{k} \, \texttt{safe}\]
+\end{itemize}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{frame}{Experimental results}
+
+\begin{tiny}
+\input{krresults.tex}
+\end{tiny}
+
+\begin{itemize}
+	\item Parallel approaches particularly suitable for identifying
+		\alert{shallow bugs}.
+	%\item  Verification times grow exponentially with the number of
+		%steps. 
+	\item \alert{Bottleneck}: state space of the associated temporal model +
+		evaluation of atomic propositions.
+\end{itemize}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Future work}	
+  
+	{\bf Scalability}
+
+  \begin{center}
+	\vspace{-1em}
+  \begin{tikzpicture}[%
+    >=stealth,
+	node distance=4cm,
+    on grid,
+    auto
+  ]
+	\begin{scriptsize}
+		\node [text width=3.5cm] (1)  {
+			\begin{block}{{\footnotesize Neural agents}}
+		\begin{itemize}
+			\item	Up to 2018: $10^1$
+			\item 2018-2020 (VNN20):  $10^4$
+			\item 2020-2022: $10^6$ (?)
+		\end{itemize}
+  	  \end{block}
+  };
+
+  \node [right of = 1,text width=3cm] (2){
+	  \begin{block}{{\footnotesize Neural-symbolic MAS}}
+		\begin{itemize}
+			\item $10^2$ nodes
+			\item $10^1$ time-steps
+		\end{itemize}
+		\end{block}
+  };
+
+  \node [right of = 2, xshift=-4.5em,text width=1.5cm] (3){
+	  \begin{block}{{\footnotesize Neural swarms}}
+		\begin{itemize}
+			\item (?)
+		\end{itemize}
+		\end{block}
+  };
+
+  \path[->,line width=2]
+	(1) edge (2)
+	(2) edge (3);
+	\end{scriptsize}
+  \end{tikzpicture}	
+
+	\end{center}
+
+{\bf Analysis of industrial models}
+
+	\begin{footnotesize}
+\begin{itemize}
+	\item Perception modules for autonomous driving.
+	\item Classification/localisation/segmentation models for deep
+		learning.
+\end{itemize}
+
+
+\end{footnotesize}
+	{\bf Repair and data augmentation}
+	\begin{footnotesize}
+	\begin{itemize}
+		\item Analysis of counterexamples to repair faulty models.
+		\item Augmentation of the training set with counterexamples
+			and retraining of the models.
+	\end{itemize}
+	\end{footnotesize}
+
+
+
+
+{\bf Other instantiations of the overall verification problem (?)}
+	\begin{footnotesize}
+\begin{itemize}
+	\item DAI, Planning
+\end{itemize}
+\end{footnotesize}
+		
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Future work}
+
+\begin{block}{Scalable verification of neural agents.}
+\begin{itemize}
+	\item Linear approximations of ReLUs
+	\item Dependency-based branching methods
+	\item Structural abstractions in CEGAR frameworks.
+\end{itemize}
+\end{block}
+
+\begin{exampleblock}{Neural-symbolic MAS}
+\begin{itemize}
+	\item Abstractions on the induced temporal models.
+	\item Compositional Reasoning.
+\end{itemize}
+\end{exampleblock}
+
+\begin{alertblock}{Neural-symbolic swarms}
+	\begin{itemize}
+		\item Cutoffs.
+		\item Counter abstractions.
+	\end{itemize}
+\end{alertblock}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{RAP and DAI}
+
+{\bf RAP}
+
+\begin{itemize} \itemsep 0.2cm
+	\item Planning in Neural MAS via formal verification.
+	\item  Translations of argumentation frameworks into temporal
+		models and formalisation of argumentation properties into
+		temporal and strategy logics.
+\end{itemize}
+
+\vspace{1em}
+
+{\bf DAI}
+\begin{itemize} \itemsep 0.2cm
+	\item Parameterised verification for the analysis of emergent
+		behaviours in DAI protocols  (multi-party negotiation
+		protocols and auctions, voting protocols, e-services).
+
+	\item Formal verification of neural normative MAS against deontic
+		specifications.
+\end{itemize}
+
+\end{frame}
+
+\end{document}

@@ -1,0 +1,228 @@
+Hi. I am Panagiotis Kouvaros from Imperial College London and in this early
+career spotlight talk I will give an overview of my work in the formal
+verification of neuro-symbolic multi-agent systems.
+
+Beginning with some motivation, AI has been very successful in the last decade.
+The sucess was mainly driven by deep learning where increased computational
+power and access to lots of data enabled the automation of tasks, such as
+language processing and computer vision, that have eluded computer science for
+decades. And with the automation of these tasks AI shows great promise in
+revolutionising society. However, with the increasing developmentf of AI, its
+limitations concerning its lack of interepretability and fragility are also
+increasingly highlighted. It is thus that there is a need for verification and
+neuro-symbolic approaches toawrds making AI more transparent and trustworthy.
+
+In this talk I will outline some of my work in the formal verification of AI.
+The formal verification problem is that  we want to check whether a given
+safety specification is satisfied by a multi-agent system in question. I will
+specifically talk about sytems comprising symbolic, neural and neuro-symbolic
+agents, and about properties concerning the temporal-epistemic evolution of
+agents and the robustness of neural networks. 
+
+So, beginnning with the symbolic case,  I will talk about the verification of
+unbounded multi-agent systems. 
+
+These are systems that are composed of an
+arbirtratry number of homogeneous agents. So robot swarms, multi-party
+negotiation protocols,  auctions, there are examples of unbounded multi-agent systems.
+Now, traditional verification methods target systems that are composed of a
+known number of agents. So even if we are able to encode a system with a given
+number of agents and check that a specification holds, we cannot draw any
+conclusion as to the wether the specification still holds should more or less
+agents be in the system. This is of course problematic as additional agents may interfere
+in unexpected ways thereby violating the specification. We therefore need methods
+that can prove correctness of protocols irrespective of the number of agents in
+the system.
+
+Towards the development of such methods we introduced a parameterised semantics
+for multi-agents systems where the parameter expresses the number of agents in
+the system. We also introduced an indexed temporal-epistemic logic that allows
+for quantifying over the agents. So, for example, in a robot swarm aggregatio
+protocol, we can express the property that every robot in the swarm,
+irrespective of how many are composing the swarm, remain infinitely often
+connected with another robot. Now given the semantics and the specification
+language the verifiation problem is to check that for any value of the
+parameter the specification is satisfied. As we have shown this is undecidable
+in general.
+
+We have thus derived a number of classes of systems for which we can give
+verification procedures. Each class has a different set of synchronisation
+primitives but all classes have a common characteristic which is that they
+have the a so called cutoff. A cutoff is a natural number that expresses the
+number of agents in the system that is sufficient to consider when evaluating a
+specification. So if we can compute a cutoff then we can solve the verification
+problem by checking all the systems up to the cutoff.
+
+
+And what we have shown is that in the fully synchronous setting, and also in
+the aynchronous setting where agents communicate only using broadcast, cutoffs
+always exist. Now if the agents are additionally endowed with pairwise
+communication, then  cutoffs exist whenever the envrionment can never block
+synchronisation between the agents. And we have shown that the same condition
+holds for systems where agents are derived from more than one agent template.
+
+Now while these classes are important in that they can guide engineers to build
+systems that can be verified, in addition to verification it is also imporant
+that protocols are evaluated with reosect to faults at runtime. For instance,
+when evaluating a swarm formation protocol, it is important to establish that
+if a robot breaks, then the swarm will tolerate the fault, instead of the fault
+being propagated through the swarm thereby breaking the formation.  So, what
+we've been able  to show is that some simple adaptations of the labelling
+algorithm for model checking can be used to derive the maximum ratio of faulty
+to non-faulty agents that the system can tolerate before a specification is
+violated. 
+
+And these are all techniques that are implemented in the toolkit MCMAS-P which
+has enabled the verification of expressive robot swarms protocol for any number
+of agents in the swarm. And these are systems for which standard verification
+can only analyse with respect to only a small number of agents.
+
+OK, so this was an outline of our work in the verification of unbounded
+multi-agent systems. I will not briefly discuss our work in the formal
+verification of neural networks. 
+
+The area of formal verification of neural networks was rapidly developed in the
+last five years to address the fragility of neural networks to input
+perturbations. This fragility concerns the problem that imperceptible
+perturbations to the input of neural network classifiers, which are called
+adversarial examples, can often cause a erroneous change in the classification
+result.
+
+So the aim of formal verification is to ascertain whether a given neural
+network is robust to these adversarial examples. More formally, the
+verification problem is that we are given an infinite set of inputs which
+contains all perturbations of interest, and we want to check whether the output
+of the network is as expected for all of these inputs. 
+
+To give an example in the computer vision domain, we are given an original
+image, on which we may want to define an infinite set of brightness
+adjustments, contrast adjustments, white noise changes and so forth. All these
+are given as inputs to a neural network verifier together with the neural
+network, and the verifier will output, say that the neural network is robust
+with respect to all brightness adjustments but is fragile with respect to
+contrast adjustments in which case it will give the counterexamples.
+
+Most of the work in the area is centered around networks with ReLU activations
+functions, which are not only very popular activation functions when training
+networks, but they are also more amenable to verification than others because
+of their piecewise linearity. In particular the function has two linear
+segments, one where the input is below zero and the function outputs zero and
+one where the input is above zero and the function outputs its input.
+
+And this piecewise linearity makes for a natural representation of the
+verification problem as a mixed-integer linear program, where we can encode the
+problem as a set of linear constraints over real-valued and binary variables,
+And what we will have is that the verification problem is satisfied if and only
+if this set of constraints has no feasible solution. Otherwise, any feasible
+solution will be corresponding to a counterexample of the verification query.
+Not this MILP program has two key components, one is the pre-activation bounds
+of the ReLUs and the other is the binary variables, which are both used to
+encode the ReLU function. And crucially the looser these bounds are and the
+more binary variables we use for the encoding the less efficient are MILP
+solvers in solving the problem.
+
+
+In the light of these we put forward procedures that derive tight
+pre-activation bounds. These work by symbolically propagating input bounds
+through the layers using linear relaxations of the ReLUS. Our contribution here
+was the derivation of the local linear relaxations that would globally lead to
+tighter bounds.  To reduce the number of binary variables we introduced the
+notion of dependencies whereby ReLU nodes are in a dependency relation if the
+linear segments on which they operate are connected by logical implication. We
+have introduced procedures for the identification of these dependencies which
+have then used to reduce the value assignments for the binary variables that
+need to be considered when solving an MILP program.
+
+These procedures are implemented into the toolkit Venus which we have released
+as open source. The progress of the toolkit, where it has advanced from
+checking networks of a few thousand nodes in 2019, to verifying networks of
+millions of nodes in 2023, is really indicative of the progress in the research
+are in general, which has been rapid the last few years.
+
+One of the latest applications of Venus was the formal analysis of models for
+aircraft, which were built by Boeing, and which predict key points in runways.
+The analysis concerned the robustness of the models to different lighting
+conditions as modeled by photometric transformations and random noise applied
+to the inputs of the models. What we have found is that the models robust to
+very minor perturbations but still brittle to realistic alterations of the
+input. Here for example you can see an original image and an indistinguishable
+perturbation for which the model is no longer identifying the correct key
+points.
+
+
+OK, so lastly I will briefly discuss formal verification for neuro-symbolic
+multi-agent systems. So these are systems that are comprised of both symbolic
+and neural components.
+
+And the operational cycle of an agent in the formal model that we put forward
+for their analysis goes as follows. So the state of an agent comprises two
+components, a private component which only the agent can see, and a percept
+which is an internal representation of the state of the environment. 
+
+Given this state and a symbolic protocol function 
+
+
+the agent decides on an action to perform
+
+
+Then based on the actions of all the agents in the system and a symbolic state
+transition function the agent updates the private component of its state. 
+
+
+Then the agent observes the new state of the environment through a neural
+network and updates its percept component.  
+
+
+Now given this description of neuro-symbolic agents, a neuro-symbolic
+multi-agent system is a standard composition of neuro-symbolic agents.
+
+Now what we've shown is that verification for neuro-symbolic multi-agent
+systems is undecidable for even plain reachability properties, that is
+properties that say that the system eventually reaches an unsafe state. But
+decidability can be obtained if we restrict the specification language to
+bounded fragments. And we did so for alternating-time temporal logic. So for
+example we can only write specifications that say that the system will reach an
+unsafe state in a number of time steps, or that an agent has a strategy to
+enter a safe configuration irrespective of what the other agents do.
+
+
+OK, so given this bounded fragment we can recast the verification problem into
+a MILP feasibility problem, which can either be a single, big MILP program or a
+set of smaller programs each corresponding to a neural network verification
+problem.
+
+In experiments, including a two-agent aircraft collision avoidance system, 
+
+there is no clear indication of which encoding works best and it remains future
+work to better characterise the classes of systems for which the encodings
+would work best.
+
+OK, so I will conclude this talk with some directions for future work. There is
+clearly been significant progress in the formal verification of AI,
+particularly in the neural network case where bigger and bigger networks with
+richer and richer architectures are being verified. Scalability remains an
+issue in the area however. It is important that we continue improving
+scalability if we are to address the bigger models that are found in the
+industry. It is also important that we expand the repertoire of specifications,
+which currently mostly concerns robustness to white noise perturbations, to
+include other perturbations, such as semantic transformations, and system-level
+specifications. The early success of formal verification enabled the derivation
+of robust training methods whereby the robustness loss is incorporated into the
+training loss. It is important the progress is continued along these lines so
+that we built models that are robust from the start. Lastly, given the
+increasingly inter-connected state of the world, where arbitrarily many
+neuro-symbolic agents are interacting between themselves, in future work we
+would like to put forward methods for the verification of unbounded systems of
+neuro-symbolic agents.
+
+Thank you for listening.
+
+
+
+
+
+
+and procedures that reduce the number of binary variables
+used in the encodings.
+
+

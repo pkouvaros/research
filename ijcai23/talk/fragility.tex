@@ -1,0 +1,39 @@
+\resizebox{6cm}{!}{
+	\begin{tikzpicture}[node distance=5cm,  minimum
+	  height=0.7cm]
+
+	%\node[draw=orange, fill=orange!10!white,rectangle,
+	%xshift=0em, yshift=0cm, inner ysep=0.001cm] (1)
+	%{  \includegraphics[width=0.05\textwidth]{mnist1.png}
+
+	%};
+	  \node[] (1)
+	  {  \includegraphics[width=0.15\textwidth]{mnist1.png}
+	};
+	\node[right of =1, xshift=0.5cm] (2)
+	{  \input{net.tex} 
+		%\includegraphics[width=0.6\textwidth]{nn.png}
+	};
+	\node[right of=2, xshift=-2em] (3) {{\Huge 2}};
+
+
+
+	%\node[fit=(1)(2)(3), draw, navyblue, line width=0.03cm, solid, rounded corners,
+	%inner sep=0.2cm] (s) {};
+
+
+\path[->,very thick,every node/.style={->,font=\sffamily\normalsize}]
+(1) edge node [] {} (2)
+(2) edge node [] {} (3);
+
+  \end{tikzpicture}
+}
+
+
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "deliverable-wp1.1-m18"
+%%% fill-column: 79
+%%% End:

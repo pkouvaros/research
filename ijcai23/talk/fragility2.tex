@@ -1,0 +1,51 @@
+\resizebox{9cm}{!}{
+	\begin{tikzpicture}[node distance=5cm,  minimum
+	  height=0.7cm]
+
+	%\node[draw=orange, fill=orange!10!white,rectangle,
+	%xshift=0em, yshift=0cm, inner ysep=0.001cm] (1)
+	%{  \includegraphics[width=0.05\textwidth]{mnist1.png}
+
+	%};
+
+	\node[] (5)
+	{  \includegraphics[width=0.15\textwidth]{mnist1.png}
+	};
+	
+	\node[right of=5,xshift=-10em] (5a)  {{\Huge $\times$}};
+	\node[right of=5a,xshift=-10em] (5b) 
+	{  \includegraphics[width=0.15\textwidth]{pig-noise.png}
+	};
+	\node[right of=5b,xshift=-10em] (5c)  {{\Huge $=$}};
+	\node[right of=5c,xshift=-10em] (5d)
+	{\includegraphics[width=0.15\textwidth]{mnist1.png}};
+
+	\node[right of =5d, xshift=0.5cm] (6)
+	{  
+		\input{net.tex}
+		%\includegraphics[width=0.6\textwidth]{nn.png}
+	};
+	\node[right of=6,xshift=-2em] (7) {{\Huge 8}};
+
+
+
+
+	%\node[fit=(5)(6)(7), draw, navyblue, line width=0.03cm, solid, rounded corners,
+	%inner sep=0.2cm] (s) {};
+
+
+\path[->,very thick,every node/.style={->,font=\sffamily\normalsize}]
+(5d) edge node [] {} (6)
+(6) edge node [] {} (7);
+
+  \end{tikzpicture}
+}
+
+
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "deliverable-wp1.1-m18"
+%%% fill-column: 79
+%%% End:

@@ -1,0 +1,73 @@
+\resizebox{5cm}{!}{
+
+
+\tikzset{cross/.style={cross out, draw=red, thick, minimum size=1.5em, inner sep=0pt, outer sep=0pt},
+%default radius will be 1pt. 
+cross/.default={1pt}}
+
+
+
+\begin{tikzpicture}[node distance=3.3cm, font=\scriptsize,auto,
+  neuron/.style={circle, inner sep=0.03cm}]
+
+  \node [fill=green!50!white,draw=green,neuron] (1)
+  {$\activation 0_1$};
+
+  \node [below of=1,yshift=1.5cm,
+  fill=green!50!white,draw=green,neuron] (2) {$\activation 0_2$};
+
+  \node [right of=1, xshift=-1.5cm, draw=black,neuron] (3) {$\activation 1_1$};
+
+  \node [below of=3,yshift=1.5cm, draw=black,neuron] (4) {$\activation 1_2$};
+
+  \node [right of=3, xshift=-1cm, draw=black,neuron] (5) {$\activation 2_1$};
+  
+
+  \node [below of=5,yshift=1.5cm, draw=black,neuron] (6) {$\activation 2_2$};
+
+
+  \node [right of=5, xshift=-1cm, draw=black,neuron] (7) {$\activation 3_1$};
+
+  \node [below of=7,yshift=1.5cm, draw=black,neuron] (8) {$\activation 3_2$};
+
+
+  \path[-latex,semithick,every node/.style={->,font=\sffamily\scriptsize, scale=0.9}]
+  (1) edge node [above] {} (3)
+  (1) edge node [near start,left] {} (4)
+  (2) edge node [near start,left] {} (3)
+  (2) edge node [below] {} (4)
+  ([xshift=-0.2em]3.south)  edge[thick, dashed] node[left] {ii} ([xshift=-0.2em]4.north)
+  ([xshift=0.2em]4.north)  edge[thick, dashed] node[right] {aa}
+  ([xshift=0.2em]3.south)
+  (3) edge[] node [color=black] [above] {$\weights 2_1$} (5)
+  (3) edge[] node [color=black] [near start,left] {} (6)
+  ([xshift=-0.2em,yshift=0.2em]4.north east) edge[thick, dashed] node
+  [near start,left,color=black,yshift=0.2em] {ia}
+  ([xshift=-0.2em,yshift=0.2em]5.south west)
+  ([xshift=0.2em,yshift=-0.2em]5.south west) edge[thick, dashed] node [near
+  start,right,color=black,yshift=0em] {ai}
+  ([xshift=0.2em,yshift=-0.2em]4.north east)
+  ([yshift=-0.2em]4.east) edge[thick, dashed] node [below,color=black] {ii}
+  ([yshift=-0.2em]6.west)
+  ([yshift=0.2em]6.west) edge[thick, dashed] node [above,color=black]
+  {aa}
+  ([yshift=0.2em]4.east)
+  ([yshift=-0.2em]5.east) edge[thick, dashed] node  [below] {ii} ([yshift=-0.2em]7.west)
+  ([yshift=0.2em]7.west) edge[thick, dashed] node  [above] {aa} ([yshift=0.2em]5.east)
+  ([xshift=-0.2em,yshift=-0.2em]5.south east) edge[thick, dashed]
+  node  [near start, left, color=black, yshift=-0.3em] {ii}
+  ([xshift=-0.2em,yshift=-0.2em]8.north west)
+  ([xshift=0.2em,yshift=0.2em]8.north west) edge[thick, dashed]
+  node  [near start, right, color=black, yshift=-0em] {aa}
+  ([xshift=0.2em,yshift=0.2em]5.south east)
+  ([xshift=-0.2em,yshift=0.2em]6.north east) edge[thick, dashed]  node
+  [black,near start, left, yshift=0.3em] {ia}
+  ([xshift=-0.2em,yshift=0.2em]7.south west)
+  ([xshift=0.2em,yshift=-0.2em]7.south west) edge[thick, dashed]  node
+  [black,near start, right, yshift=0em] {ai}
+  ([xshift=0.2em,yshift=-0.2em]6.north east)
+  (6) edge[]  node  [black,below] {} (8);
+
+\end{tikzpicture}
+}
+

@@ -1,0 +1,32 @@
+\documentclass{standalone}
+\input{preamble}
+\usepackage{graphicx}
+\definecolor{navyblue}{RGB}{0,0,128}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=0.85, every node/.style={transform shape}]
+% horizontal axis
+	\draw[->] (-3,0) -- (3,0) node[anchor=north] {$x$};
+
+% vertical axis
+	\draw[->] (0,-2) -- (0,2.2) node[anchor=east] {$\relu(x)$};
+
+% labels
+	\draw	(-2,0) node[anchor=south] {$l$}
+	(2,0) node[anchor=north] {$u$};
+
+\draw[very thick] (-2,0) -- (0,0);
+
+%active state
+\draw[very thick] (0,0) -- (2,2);
+\draw[dotted] (2,0) -- (2,2);
+
+
+% upper bound relaxation
+\draw[draw=purple,fill=purple] (-2,0) circle (0.2em);
+\draw[draw=purple,fill=purple] (2,0) circle (0.2em);
+
+
+\end{tikzpicture}
+\end{document}

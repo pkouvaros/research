@@ -1,0 +1,50 @@
+
+\small
+\def\ctx{\color{red}}
+\begin{center}
+\begin{tabular}{c@{}c@{}c@{}c@{}c}
+    \multicolumn{1}{c|}{} & \multicolumn{1}{c}{Parallel} & \multicolumn{1}{c}{Sequential} &  Monolithic \\\midrule
+    \begin{tabular}{@{}c|}
+      $h_I$ \\ 
+      $\varphi^1$   \\
+      $\varphi^2$   \\
+      $\varphi^3$   \\\midrule
+      $\psi^1$   \\
+      $\psi^2$   \\
+      $\psi^3$   
+    \end{tabular}
+ &
+   \begin{tabular}{c@{~~}c@{~~}c|}
+     95     & 100    & 105                          \\  
+     2.636s & 2.698s & \ctx 3.042s  \\
+     9.602s & 17.66s & \ctx 24.04s  \\
+     414.1s & 384.7s & 393.9s  \\\midrule
+     %
+     93.30s & 111.1s & 4.178s  \\
+     --     & 5871s  & 4497s  \\
+     --     & --     &  --    
+   \end{tabular}
+ &
+   \begin{tabular}{c@{~~}c@{~~}c|}
+     95     & 100     & 105                         \\  
+     1.426s & 1.464s  & \ctx  2.712s  \\
+     5.005s & 26.15s  & \ctx 46.18s  \\
+     1131s  & 1005.5s & 1027s  \\\midrule
+     %
+     1326s  & 1481s   &  5.370s  \\
+     --     & --      &  --   \\
+     --     & --      & --
+   \end{tabular}
+ &
+   \begin{tabular}{c@{~~}c@{~~}c|}
+     95     & 100    & 105  \\  
+     0.253s & 0.212s & \ctx 83.93s\\
+     84.45s & 47.65s & -- \\
+     --     & --     & -- \\\midrule
+     %
+     1511s & 1182s &  4.498s \\
+     -- & -- &  -- \\
+     -- & -- &  -- 
+   \end{tabular}
+\end{tabular}
+\end{center}

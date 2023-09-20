@@ -1,0 +1,147 @@
+\usepackage{tikz}
+\usetikzlibrary{fit,arrows, patterns, shapes.misc, positioning}
+\usetikzlibrary{shapes,decorations,shadows,calc}
+\usetikzlibrary{decorations.pathmorphing, decorations.markings,decorations.pathreplacing}
+\usetikzlibrary{fit,patterns}
+\usepgflibrary{arrows}
+\usetikzlibrary{trees}
+\usetikzlibrary{backgrounds}
+
+\usepackage{xspace}
+\usepackage{booktabs}
+\usepackage[scientific-notation=true]{siunitx}
+\usepackage{color,colortbl}
+\tikzstyle{line}=[draw,-latex']
+\usetikzlibrary{positioning} 
+\usepackage{bbding}
+
+
+\newcommand{\tuple}[1]{\left ( #1 \right )}
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\Loc}{\mathit{L}}
+\newcommand{\loc}{\mathit{loc}}
+\newcommand{\locprv}{\mathit{lprv}}
+\newcommand{\locper}{\mathit{lper}}
+\newcommand{\env}{E}
+
+\newcommand{\maxagt}{K}
+\newcommand{\strat}{\mathit{s}}
+\newcommand{\alocdim}{\mathit{h}}
+\newcommand{\elocdim}{\mathit{m}}
+\newcommand{\perdim}{\mathit{n}}
+\newcommand{\tran}{\mathit{tr}}
+
+\newcommand{\Per}{\mathit{Per}}
+\newcommand{\per}{\mathit{per}}
+\newcommand{\Prv}{\mathit{Prv}}
+\newcommand{\prv}{\mathit{prv}}
+\newcommand{\Act}{\mathit{Act}}
+
+
+\newcommand{\set}[1]{\left \{ #1 \right \}}
+
+\newcommand{\pre}[1]{\vec{\hat{x}}_{#1}}
+
+\newcommand{\out}[1]{\vec x_{#1}}
+\newcommand{\outlb}[1]{\vec l_{#1}}
+\newcommand{\outub}[1]{\vec u_{#1}}
+\newcommand{\bias}[1]{\vec b^{(#1)}}
+\newcommand{\deltavar}[2]{\vec{\delta}^{(#1)}_{#2}}
+\newcommand{\preact}[1]{\vec z^{(#1)}}
+\newcommand{\weights}[1]{\vec W^{(#1)}}
+\newcommand{\activation}[1]{\vec x^{(#1)}}
+\newcommand{\im}{\overline{im}}
+\newcommand{\bvar}[1]{\vec{\delta}_{#1}}
+\newcommand{\actstate}{{\bf a}}
+\newcommand{\inactstate}{{\bf i}}
+
+\newcommand{\timeout}{one\xspace}
+\usepackage{MnSymbol}
+%\usepackage{stmaryrd}
+\usepackage{ifthen}
+\newcommand{\net}{\vec f}
+\newcommand{\node}[1]{\it{n}_{#1}}
+\newcommand{\vcas}{VCAS[2]\xspace}
+\newcommand{\ha}{-30}
+\newcommand{\hb}{10}
+\newcommand{\hc}{50}
+\newcommand{\hd}{90}
+\newcommand{\maxk}{5}
+\newcommand{\greyc}{False}
+\newcommand{\init}{I}
+\newcommand{\mono}{\textsc{Monolithic}\xspace}
+\newcommand{\compseq}{\textsc{Comp-Seq}\xspace}
+\newcommand{\comppar}{\textsc{Comp-Par}\xspace}
+\newcommand{\prot}{\mathsf{prot}}
+\newcommand{\tr}{\mathsf{t}}
+\newcommand{\ls}{\mathsf{l}}
+\newcommand{\id}{\mathsf{id}}
+\newcommand{\obs}{\mathit{obs}}
+\newcommand{\act}{\mathit{Act}}
+\newcommand{\ACT}{\mathit{ACT}}
+\newcommand{\ag}{\mathit{Ag}}
+\newcommand{\atls}{\ensuremath{\text{ATL}^\ast}\xspace}
+\newcommand{\ctls}{CTL$^\ast$\xspace}
+\newcommand{\coal}[1]{\langle\!\langle#1\rangle\!\rangle}
+\newcommand{\dual}[1]{[\![#1]\!]}
+%\newcommand{\out}{\mathit{out}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\sys}{\text{NANES}\xspace}
+\newcommand{\spec}{\mathcal{L}}
+\newcommand{\ssys}{\mathcal{S}}%\it{NAES}}
+\newcommand{\msys}{\mathcal M_{\ssys}}%\it{NAES}}}
+\newcommand{\op}{\mathop{op}}
+\newcommand{\last}[1]{\it{last}{#1}}
+\newcommand{\sat}[1]{\mathsf{SAT}(#1)}
+\newcommand{\agt}{\Gamma}
+\newcommand{\nagt}{\overline{\agt}}
+\newcommand\egamma[2][\agt]{\ifthenelse{\equal{#2}{1}}{\llangle#1\rrangle X}{\llangle#1\rrangle X^{#2}}}
+\newcommand\agamma[2][\agt]{\ifthenelse{\equal{#2}{1}}{\llbracket#1\rrbracket X}{\llbracket#1\rrbracket X^{#2}}}
+\newcommand{\crown}{\dot{h}_{\own}}
+\newcommand{\crint}{\dot{h}_{\intr}}
+\newcommand{\own}{\text{own}}
+\newcommand{\intr}{\text{int}}
+\newcommand{\adv}{\mathit{ad}}
+\newcommand{\advown}{\adv_{\own}}
+\newcommand{\advint}{\adv_{\intr}}
+\newcommand{\jointact}[1][\agt]{\mathit{Ind}_{#1}}
+\newcommand{\jointactagt}[1]{\Sigma_{\agt}^{#1}}
+\newcommand{\jointactnagt}[1]{\Sigma_{\nagt}^{#1}}
+\newcommand{\enc}[1]{\pi_{\ssys,#1}}
+\newcommand{\compenc}[1]{\Pi_{\ssys,#1}}
+\newcommand{\avec}[1]{\boldsymbol{#1}}
+
+\renewcommand{\vec}[1]{\boldsymbol{#1}}
+
+\tikzset{
+    descr/.style={
+        fill=white,
+        inner sep=2.5pt
+    },
+    connector/.style={
+     -latex,
+     font=\normalsize
+    },
+    rectangle connector/.style={
+        connector,
+        to path={(\tikztostart) -- ++(#1,0pt) \tikztonodes |- (\tikztotarget) },
+        pos=0.5
+    },
+    rectangle connectorh/.style={
+        connector,
+        to path={(\tikztostart) -- ++(0pt,#1)  -| (\tikztotarget) \tikztonodes },
+        pos=0.5
+    },
+    rectangle connector/.default=-2cm,
+    straight connector/.style={
+        connector,
+        to path=--(\tikztotarget) \tikztonodes
+    }
+}
+
+\tikzstyle{line}=[draw,-latex']
+
+\newcommand{\relu}[0]{\mathsf{ReLU}}
+
+\newcommand{\actfunc}[1]{\mathsf{act}^{#1}}
+

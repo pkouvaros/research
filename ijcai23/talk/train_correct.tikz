@@ -1,0 +1,28 @@
+
+\resizebox{5cm}{!}{
+\begin{tikzpicture}[node distance=1.5cm, auto]
+
+	\node  [] (y) {};
+
+	\node [below of=y,yshift=2em,fill=green!10!white,draw=green,rectangle] (1)
+	{1};
+    \node [below of=1,fill=green!10!white,draw=green,rectangle] (2)
+	{2};
+
+	\node[right of=2] (x) {};
+	\node[right of=x] (x2) {};
+
+   \path[->,very thick,color=green,every node/.style={->,font=\sffamily\normalsize}]
+   (y) edge (1)
+   (1) edge[very thick,color=green] node [right,align=left] {} (2)
+   (x) edge[very thick,color=black] node [above] {mutate} (x2);
+	
+  \draw[->,very thick, color=green,rectangle connector=-0.5cm,thick] (2) to node[descr,below]
+	{} (1);
+
+
+
+\end{tikzpicture}
+} 
+
+

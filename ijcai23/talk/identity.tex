@@ -1,0 +1,39 @@
+\resizebox{4cm}{!}{
+\begin{tikzpicture}[scale=1.2, every node/.style={transform shape}]
+% horizontal axis
+	\draw[->] (-3,0) -- (3,0) node[anchor=north] {$x$};
+
+% vertical axis
+	\draw[->] (0,-2) -- (0,2.2) node[anchor=east] {$\relu(x)$};
+
+% labels
+	\draw	(-2,0) node[anchor=south] {$l$}
+	(2,0) node[anchor=north] {$u$};
+
+\draw[very thick] (-2,0) -- (0,0);
+\draw[dotted] (-2,0) -- (-2,-1);
+
+%active state
+\draw[very thick] (0,0) -- (2,2);
+\draw[thick,dashed] (-2,-2) -- (0,0);
+\draw[dotted] (2,0) -- (2,2);
+
+
+% upper bound relaxation
+\draw[thick,dashed] (-2,0) -- (2,2) node[xshift=-3.6cm,yshift=-1.1cm]
+{{\normalsize $\frac{u}{u - l} (x -
+l)$}};
+
+% overapproxination areas
+\fill[pattern=grid,nearly transparent] (-2,0) -- (0,0) -- (2,2) -- (-2,0) -- cycle;
+\draw[pattern=dots, nearly transparent] (0,0)  -- (-2,0)
+-- (-2,-2) -- cycle;
+%\fill[purple!100,nearly transparent] (0,0) -- (2,0) -- (2,1) -- cycle;
+
+% bound indicators
+\draw[draw=purple,fill=purple] (-2,0) circle (0.2em);
+\draw[draw=purple,fill=purple] (2,0) circle (0.2em);
+
+
+\end{tikzpicture}
+}

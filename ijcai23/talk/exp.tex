@@ -1,0 +1,22 @@
+\documentclass{standalone}
+\usepackage{booktabs}
+\usepackage[scientific-notation=true]{siunitx}
+\usepackage{array}
+\begin{document}
+\begin{scriptsize}
+\begin{tabular}{cccccc}
+        \toprule
+        \#Robots  & \#States & Time (s) & Memory  (KiB) \\
+        \hline
+        \
+
+        1 & 423  & 1 & 12016112 \\
+        \textbf{3 (Cutoff)} & \textbf{177243}  & \textbf{15} & \textbf{29925984} \\
+        5 & \num{2.76e34}  & 197 & 50101616 \\
+        7 & \texttt{\textsc{timeout}}  & \texttt{\textsc{timeout}} &
+        \texttt{\textsc{timeout}} \\ 
+        \bottomrule
+        %\vspace{-0.5cm} 
+    \end{tabular}
+\end{scriptsize}
+\end{document}

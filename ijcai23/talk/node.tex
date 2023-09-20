@@ -1,0 +1,36 @@
+\documentclass{standalone}
+
+\input{preamble}
+\usepackage{graphicx}
+\definecolor{navyblue}{RGB}{0,0,128}
+\begin{document}
+
+\begin{tikzpicture}[input/.style={circle,inner sep=0.07cm, draw=black},
+	proc/.style={rectangle,minimum height=1cm,draw=black}]
+
+
+\node [input] (i1) {$\activation{i-1}_1$};
+\node [below of=i1, yshift=-0.2cm,input] (i2) {$\activation{i-1}_{2}$};
+\node [below of=i2, yshift=-1.2cm,input] (in) {$\activation{i-1}_{s_{i-1}}$};
+
+\node [right of=i2, yshift=-0.4cm,xshift=1.5cm, proc, label=above:{$\preact{i}_j$}] (at) {$\sum\limits_{k=1}^{s_{i-1}} \weights{i}_{jk}\activation{i-1}_k + \bias{i}_j$};
+\node [right of=at, xshift=2.5cm, proc, label=above:{$\activation{i}
+_j$}] (af) {$\actfunc{i}(\preact{i}_j)$};
+
+\begin{pgfonlayer}{background}
+\node [circle, draw=gray, fill=gray!10, fit=(at)(af)] {};
+\end{pgfonlayer}
+
+\draw [color=black!30!white]  (i1) -- (at);
+\draw [color=black!30!white]  (i2) -- (at);
+\draw [color=black!30!white]  (in) -- (at);
+\draw [->,color=black!30!white]  (af) -- ++(1.5,0);
+\draw[->] (at) -- node[above] {$\actfunc{i}$} (af);
+\draw[thick, dotted,color=black!80!white] (i2) -- (in);
+
+
+
+\end{tikzpicture}
+
+
+\end{document}
